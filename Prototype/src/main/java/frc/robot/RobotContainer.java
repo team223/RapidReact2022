@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.BodyCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IndexSubsystem;
@@ -27,6 +28,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static Command driveCommand = new DriveCommand();
+  public static Command bodyCommand = new BodyCommand();
   public static DriveSubsystem driveSubsystem = new DriveSubsystem(); 
 
   public static IndexSubsystem indexSubsystem = new IndexSubsystem();

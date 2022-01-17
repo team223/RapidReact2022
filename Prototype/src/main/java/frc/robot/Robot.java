@@ -89,7 +89,9 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    RobotContainer.driveCommand.start();
+    RobotContainer.driveCommand.initialize();
+    RobotContainer.bodyCommand.initialize();
+
   }
 
   /**
