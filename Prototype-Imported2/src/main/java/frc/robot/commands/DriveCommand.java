@@ -7,16 +7,16 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.DriveSubsystem;
 
-public class BodyCommand extends Command {
+public class DriveCommand extends CommandBase {
   /**
-   * Creates a new BodyCommand.
+   * Creates a new DriveCommand.
    */
-  public BodyCommand() {
-    addRequirements( RobotContainer.indexSubsystem, RobotContainer.shooterSubsystem
-    , RobotContainer.indexSubsystem);
+  public DriveCommand() {
+    addRequirements( RobotContainer.driveSubsystem );
   }
 
   // Called when the command is initially scheduled.
@@ -27,19 +27,8 @@ public class BodyCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if( RobotContainer.joystick1.getRawButton( 0 ) ){
-      RobotContainer.indexSubsystem.setRollers(0.5);
-    }
-
-    if( RobotContainer.joystick1.getRawButton( 1 )){
-      RobotContainer.indexSubsystem.setTower(0.5);
-    }
-
-    if( RobotContainer.joystick1.getRawButton( 2 ) ){
-      RobotContainer.intakeSubsystem.setIntake( 0.5 );
-    }
-
-    RobotContainer.shooterSubsystem.setShooter( RobotContainer.joystick1.getRawAxis(2) );
+    RobotContainer.driveSubsystem.cheezyDrive
+    (RobotContainer.joystick1.getRawAxis(1), RobotContainer.joystick1.getRawAxis(4));
   }
 
   // Called once the command ends or is interrupted.
