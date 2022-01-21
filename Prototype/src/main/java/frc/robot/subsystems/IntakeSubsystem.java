@@ -7,7 +7,10 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.PWMTalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -15,10 +18,10 @@ public class IntakeSubsystem extends SubsystemBase {
   /**
    * Creates a new IntakeSubsystem.
    */
-  private static PWMTalonSRX intake = new PWMTalonSRX( Constants.INTAKE_ID );
+  private static TalonSRX intake = new TalonSRX( Constants.INTAKE_ID );
 
   public void setIntake( double intakeValue ){
-    intake.set( intakeValue );
+    intake.set( ControlMode.PercentOutput, -intakeValue );
   }
 
   @Override

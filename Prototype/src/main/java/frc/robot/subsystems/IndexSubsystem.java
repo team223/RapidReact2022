@@ -7,7 +7,10 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.PWMTalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -15,18 +18,18 @@ public class IndexSubsystem extends SubsystemBase {
   /**
    * Creates a new IndexSubsystem.
    */
-  private static PWMTalonSRX tower = new PWMTalonSRX( Constants.TOWER_ID );
+  private static TalonSRX tower = new TalonSRX( Constants.TOWER_ID );
 
-  private static PWMTalonSRX leftRoller = new PWMTalonSRX( Constants.LEFT_ROLLER_ID );
-  private static PWMTalonSRX rightRoller = new PWMTalonSRX( Constants.RIGHT_ROLLER_ID );
+  private static TalonSRX leftRoller = new TalonSRX( Constants.LEFT_ROLLER_ID );
+  private static TalonSRX rightRoller = new TalonSRX( Constants.RIGHT_ROLLER_ID );
 
   public void setRollers( double rollerValue ){
-    leftRoller.set( rollerValue );
-    rightRoller.set( -rollerValue );
+    leftRoller.set( ControlMode.PercentOutput, rollerValue );
+    rightRoller.set( ControlMode.PercentOutput, -rollerValue );
   }
 
   public void setTower( double intakeValue ){
-    tower.set( intakeValue );
+    tower.set( ControlMode.PercentOutput, intakeValue );
   }
 
   @Override

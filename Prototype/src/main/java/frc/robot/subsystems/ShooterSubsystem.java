@@ -7,7 +7,10 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.PWMTalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -15,12 +18,12 @@ public class ShooterSubsystem extends SubsystemBase {
   /**
    * Creates a new ShooterSubsystem.
    */
-  private static PWMTalonSRX shooter1 = new PWMTalonSRX( Constants.SHOOTER_ID_1 );
-  private static PWMTalonSRX shooter2 = new PWMTalonSRX( Constants.SHOOTER_ID_2 );
+  private static CANSparkMax shooter1 = new CANSparkMax( Constants.SHOOTER_ID_1, MotorType.kBrushless );
+  private static CANSparkMax shooter2 = new CANSparkMax( Constants.SHOOTER_ID_2, MotorType.kBrushless );
 
   public void setShooter( double shooterValue ){
     shooter1.set(shooterValue);
-    shooter2.set(shooterValue);
+    shooter2.set(-shooterValue);
   }
 
   @Override

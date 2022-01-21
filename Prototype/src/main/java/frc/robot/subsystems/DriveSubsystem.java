@@ -28,9 +28,12 @@ public class DriveSubsystem extends SubsystemBase {
   {new CANSparkMax( 4, MotorType.kBrushless ), new CANSparkMax( 5, MotorType.kBrushless ), new CANSparkMax( 6, MotorType.kBrushless ) };
 
   public void setMotors( double left, double right ){
-    for( int i = 0; i < 3; i++ ){
-      leftMotors[i].set(left); rightMotors[i].set(right);
-    }
+   leftMotors[0].set( left ); 
+  rightMotors[0].set( right );
+   leftMotors[1].set( -left ); 
+   rightMotors[1].set( right );
+    leftMotors[2].set( -left );
+    rightMotors[2].set( -right );
   }
 
   public void cheezyDrive( double stick1, double stick2 ){
@@ -41,7 +44,9 @@ public class DriveSubsystem extends SubsystemBase {
       stick2 = 0;
     }
 
-    setMotors( stick1 + stick2, stick1 - stick2 );
+    stick1 /= 3; stick2 /= 3;
+
+    setMotors( stick1 - stick2, stick1 + stick2 );
   }
 
 }

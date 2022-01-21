@@ -27,13 +27,15 @@ import frc.robot.subsystems.ShooterSubsystem;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public static Command driveCommand = new DriveCommand();
-  public static Command bodyCommand = new BodyCommand();
+
   public static DriveSubsystem driveSubsystem = new DriveSubsystem(); 
 
   public static IndexSubsystem indexSubsystem = new IndexSubsystem();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+  
+  public static Command driveCommand = new DriveCommand();
+  public static Command bodyCommand = new BodyCommand();
   
   public static Joystick joystick1 = new Joystick(0);
   public static Joystick joystick2 = new Joystick(1);
