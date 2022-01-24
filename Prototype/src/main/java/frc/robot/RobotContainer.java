@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.AutoDrive1;
 import frc.robot.commands.BodyCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
@@ -36,6 +37,7 @@ public class RobotContainer {
   
   public static Command driveCommand = new DriveCommand();
   public static Command bodyCommand = new BodyCommand();
+  public static Command autodrive1 = new AutoDrive1();
   
   public static Joystick joystick1 = new Joystick(0);
   public static Joystick joystick2 = new Joystick(1);

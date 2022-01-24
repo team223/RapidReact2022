@@ -36,6 +36,7 @@ public class DriveSubsystem extends SubsystemBase {
     rightMotors[2].set( -right );
   }
 
+
   public void cheezyDrive( double stick1, double stick2 ){
     if( Math.abs( stick1 ) < Constants.CONTROLLER_DEADZONE ){
       stick1 = 0;
@@ -48,5 +49,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     setMotors( stick1 - stick2, stick1 + stick2 );
   }
+
+
 
 }
