@@ -28,7 +28,7 @@ public class DriveCommand extends CommandBase {
   @Override
   public void execute() {
     RobotContainer.driveSubsystem.cheezyDrive
-    (RobotContainer.joystick1.getRawAxis(1), RobotContainer.joystick1.getRawAxis(4));
+    (RobotContainer.joystick1.getRawAxis(4), RobotContainer.joystick1.getRawAxis(1));
   }
 
   // Called once the command ends or is interrupted.

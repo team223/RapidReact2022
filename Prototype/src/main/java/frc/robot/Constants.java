@@ -19,10 +19,10 @@ public final class Constants {
 
     public static final double CONTROLLER_DEADZONE = 0.05;
 
-    public static final int INTAKE_ID = 18;
-    public static final int LEFT_ROLLER_ID = 16;
-    public static final int RIGHT_ROLLER_ID = 17;
-    public static final int TOWER_ID = 15;
-    public static final int SHOOTER_ID_1 = 10;
-    public static final int SHOOTER_ID_2 = 11;
+    //public static final int INTAKE_ID = 18;
+    //public static final int LEFT_ROLLER_ID = 16;
+    //public static final int RIGHT_ROLLER_ID = 17;
+    //public static final int TOWER_ID = 15;
+    //public static final int SHOOTER_ID_1 = 10;
+    //public static final int SHOOTER_ID_2 = 11;
 }

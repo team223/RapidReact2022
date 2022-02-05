@@ -18,11 +18,12 @@ public class IntakeSubsystem extends SubsystemBase {
   /**
    * Creates a new IntakeSubsystem.
    */
+  /*
   private static TalonSRX intake = new TalonSRX( Constants.INTAKE_ID );
 
   public void setIntake( double intakeValue ){
     intake.set( ControlMode.PercentOutput, -intakeValue );
-  }
+  }*/
 
   @Override
   public void periodic() {

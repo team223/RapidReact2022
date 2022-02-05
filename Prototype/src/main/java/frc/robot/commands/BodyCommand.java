@@ -36,7 +36,7 @@ public class BodyCommand extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
+  public void execute() {/*
     SmartDashboard.putNumber( "Shooter Percent", SmartDashboard.getNumber( "Shooter Percent", inputValue ));
      inputValue = SmartDashboard.getNumber( "Shooter Percent", inputValue );
     
@@ -82,10 +82,10 @@ public class BodyCommand extends CommandBase {
       RobotContainer.intakeSubsystem.setIntake( 0 );
       RobotContainer.indexSubsystem.setRollers( 0 );
 
-    }
+    }*/
 
  }
-
+/*
  private void shooterPID( double target ){
 
     double PValue = target - RobotContainer.shooterSubsystem.getSpeed();
@@ -94,7 +94,7 @@ public class BodyCommand extends CommandBase {
     RobotContainer.shooterSubsystem.setShooter( PValue * kP + IValue * kI + dValue * kD );
   
     prevPValue = PValue;
- }
+ }*/
 
   // Called once the command ends or is interrupted.
   @Override

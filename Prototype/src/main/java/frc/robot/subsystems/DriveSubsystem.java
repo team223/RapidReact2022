@@ -27,13 +27,17 @@ public class DriveSubsystem extends SubsystemBase {
   private static CANSparkMax[] rightMotors = 
   {new CANSparkMax( 4, MotorType.kBrushless ), new CANSparkMax( 5, MotorType.kBrushless ), new CANSparkMax( 6, MotorType.kBrushless ) };
 
+  //DO NOT CHANGE
   public void setMotors( double left, double right ){
-   leftMotors[0].set( left ); 
-  rightMotors[0].set( right );
-   leftMotors[1].set( -left ); 
-   rightMotors[1].set( right );
-    leftMotors[2].set( -left );
-    rightMotors[2].set( -right );
+  leftMotors[0].set( -left ); //1
+  System.out.println("left: " +  leftMotors[0].getEncoder().getVelocity());
+  leftMotors[1].set( left ); //2
+  leftMotors[2].set( left );  //3
+
+  rightMotors[0].set( -right ); //4
+  System.out.println("right: " + rightMotors[0].getEncoder().getVelocity());
+  rightMotors[1].set( -right ); //5
+  rightMotors[2].set( -right ); //6
   }
 
 
@@ -46,7 +50,6 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     stick1 /= 3; stick2 /= 3;
-
     setMotors( stick1 - stick2, stick1 + stick2 );
   }
 

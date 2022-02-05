@@ -92,7 +92,7 @@ public class Robot extends TimedRobot {
     }
     
     RobotContainer.driveCommand.schedule();
-    RobotContainer.bodyCommand.schedule();
+    //RobotContainer.bodyCommand.schedule();
 
   }
 

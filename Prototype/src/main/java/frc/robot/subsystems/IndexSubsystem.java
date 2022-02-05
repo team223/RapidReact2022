@@ -17,7 +17,7 @@ import frc.robot.Constants;
 public class IndexSubsystem extends SubsystemBase {
   /**
    * Creates a new IndexSubsystem.
-   */
+   *//*
   private static TalonSRX tower = new TalonSRX( Constants.TOWER_ID );
 
   private static TalonSRX leftRoller = new TalonSRX( Constants.LEFT_ROLLER_ID );
@@ -30,7 +30,7 @@ public class IndexSubsystem extends SubsystemBase {
 
   public void setTower( double intakeValue ){
     tower.set( ControlMode.PercentOutput, intakeValue );
-  }
+  }*/
 
   @Override
   public void periodic() {
