@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -20,7 +21,6 @@ import frc.robot.Constants;
 public class DriveSubsystem extends SubsystemBase {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
   private static CANSparkMax[] leftMotors =
   {new CANSparkMax( 1, MotorType.kBrushless ), new CANSparkMax( 2, MotorType.kBrushless ), new CANSparkMax( 3, MotorType.kBrushless ) };
 
@@ -29,17 +29,36 @@ public class DriveSubsystem extends SubsystemBase {
 
   //DO NOT CHANGE
   public void setMotors( double left, double right ){
-  leftMotors[0].set( -left ); //1
-  System.out.println("left: " +  leftMotors[0].getEncoder().getVelocity());
+  leftMotors[0].set( left ); //1
+  //System.out.println("left: " +  leftMotors[0].getEncoder().getVelocity());
   leftMotors[1].set( left ); //2
   leftMotors[2].set( left );  //3
 
   rightMotors[0].set( -right ); //4
-  System.out.println("right: " + rightMotors[0].getEncoder().getVelocity());
+  //System.out.println("right: " + rightMotors[0].getEncoder().getVelocity());
   rightMotors[1].set( -right ); //5
   rightMotors[2].set( -right ); //6
+/*
+  leftMotors[0].burnFlash();
+  leftMotors[1].burnFlash();
+  leftMotors[2].burnFlash();
+  rightMotors[0].burnFlash();
+  rightMotors[1].burnFlash();
+  rightMotors[2].burnFlash();
+*/
+  System.out.println(getAverageEncoderVelocity());
   }
 
+  public static double getAverageEncoderVelocity(){
+    double temp = 0.0;
+    for (int i = 0; i < 3; i++){
+        temp += Math.abs(leftMotors[i].getEncoder().getVelocity());
+        temp += Math.abs(rightMotors[i].getEncoder().getVelocity());
+    }
+    return temp / 6;
+  }
+
+  //PIDController pid = new PIDController(0.0008279, kI, 0);
 
   public void cheezyDrive( double stick1, double stick2 ){
     if( Math.abs( stick1 ) < Constants.CONTROLLER_DEADZONE ){
@@ -49,7 +68,7 @@ public class DriveSubsystem extends SubsystemBase {
       stick2 = 0;
     }
 
-    stick1 /= 3; stick2 /= 3;
+    //stick1 /= 3; stick2 /= 3;
     setMotors( stick1 - stick2, stick1 + stick2 );
   }
 
