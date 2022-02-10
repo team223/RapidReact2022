@@ -28,9 +28,12 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putNumber("Velocity", DriveSubsystem.getAverageEncoderVelocity());
-    RobotContainer.driveSubsystem.cheezyDrive
-    (RobotContainer.joystick1.getRawAxis(4), RobotContainer.joystick1.getRawAxis(1));
+   // RobotContainer.driveSubsystem.PIDTest( true );
+    RobotContainer.driveSubsystem.cheezyDrive(RobotContainer.joystick1.getRawAxis( 1 ), RobotContainer.joystick1.getRawAxis( 4 ));
+    /*
+    SmartDashboard.putNumber( "kP", SmartDashboard.getNumber( "kP", RobotContainer.drivetrainKP ));
+    RobotContainer.drivetrainKP = SmartDashboard.getNumber( "kP", RobotContainer.drivetrainKP );
+    */
   }
 
   // Called once the command ends or is interrupted.

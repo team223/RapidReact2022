@@ -41,6 +41,10 @@ public class RobotContainer {
   
   public static Joystick joystick1 = new Joystick(0);
   public static Joystick joystick2 = new Joystick(1);
+
+  public static double drivetrainKP = 0.0001;
+  public static double drivetrainKI = 0.000001;
+  public static double drivetrainKD = 0;
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -66,6 +70,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return driveCommand;
+    return autodrive1;
   }
 }
