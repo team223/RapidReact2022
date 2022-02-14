@@ -7,17 +7,23 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class IntakeSubsystem extends SubsystemBase {
   /**
    * Creates a new IntakeSubsystem.
    */
-  /*
-  private static TalonSRX intake = new TalonSRX( Constants.INTAKE_ID );
+  private static CANSparkMax intake = new CANSparkMax( Constants.INTAKE_ID, MotorType.kBrushless );
+
+  
   public void setIntake( double intakeValue ){
-    intake.set( ControlMode.PercentOutput, -intakeValue );
-  }*/
+    intake.set( -intakeValue );
+  }
+
 
   @Override
   public void periodic() {
