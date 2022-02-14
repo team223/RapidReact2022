@@ -69,6 +69,9 @@ public class AutoDrive1 extends SequentialCommandGroup {
     DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(updatedSpeeds);
     double left = wheelSpeeds.leftMetersPerSecond;
 
+    SmartDashboard.putNumber( "Target X", goal.poseMeters.getX());        SmartDashboard.putNumber( "Target Y", goal.poseMeters.getY());
+    SmartDashboard.putNumber( "Actual X", RobotContainer.driveSubsystem.getPosition().getX());        SmartDashboard.putNumber( "Actual Y", RobotContainer.driveSubsystem.getPosition().getY());
+
     System.out.println( left );
     double right = wheelSpeeds.rightMetersPerSecond;
 
@@ -89,6 +92,6 @@ public class AutoDrive1 extends SequentialCommandGroup {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return (double)(System.currentTimeMillis() - startTimeMillis ) / 1000 > trajectory.getTotalTimeSeconds();
   }
 }

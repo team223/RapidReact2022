@@ -33,7 +33,7 @@ public class RobotContainer {
   public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   
   public static Command driveCommand = new DriveCommand();
-  //public static Command bodyCommand = new BodyCommand();
+  public static Command bodyCommand = new BodyCommand();
   
   public static Joystick joystick1 = new Joystick(0);
   public static Joystick joystick2 = new Joystick(1);

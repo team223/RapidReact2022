@@ -7,23 +7,28 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class IndexSubsystem extends SubsystemBase {
-  /**
-   * Creates a new IndexSubsystem.
-   *//*
-  private static TalonSRX tower = new TalonSRX( Constants.TOWER_ID );
-  private static TalonSRX leftRoller = new TalonSRX( Constants.LEFT_ROLLER_ID );
-  private static TalonSRX rightRoller = new TalonSRX( Constants.RIGHT_ROLLER_ID );
-  public void setRollers( double rollerValue ){
-    leftRoller.set( ControlMode.PercentOutput, rollerValue );
-    rightRoller.set( ControlMode.PercentOutput, -rollerValue );
-  }
-  public void setTower( double intakeValue ){
-    tower.set( ControlMode.PercentOutput, intakeValue );
-  }*/
 
+  private static TalonSRX gateway = new TalonSRX( Constants.GATEWAY_ID );
+  private static TalonSRX feeder = new TalonSRX( Constants.FEEDER_ID );
+
+
+  public void setGateway( double gatewayValue ){
+    gateway.set( ControlMode.PercentOutput, gatewayValue );
+  }
+
+
+  public void setFeeder( double feederValue ){
+    feeder.set( ControlMode.PercentOutput, feederValue );
+  }
+
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

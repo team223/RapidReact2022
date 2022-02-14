@@ -37,7 +37,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public Pose2d currentPose;
 
-  public DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d( 0 ));
+  public DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d( 213.69 ), new Pose2d( 8, 3, new Rotation2d( 213.69 )));
 
   public static double rotToMeters;
 

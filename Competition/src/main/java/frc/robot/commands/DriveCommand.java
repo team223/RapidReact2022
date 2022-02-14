@@ -7,10 +7,8 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.DriveSubsystem;
 
 public class DriveCommand extends CommandBase {
   /**
@@ -28,9 +26,7 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putNumber("Velocity", DriveSubsystem.getAverageEncoderVelocity());
-    RobotContainer.driveSubsystem.cheezyDrive
-    (RobotContainer.joystick1.getRawAxis(4), RobotContainer.joystick1.getRawAxis(1));
+    RobotContainer.driveSubsystem.cheezyDrive( RobotContainer.joystick1.getRawAxis(4), RobotContainer.joystick1.getRawAxis(1) );
   }
 
   // Called once the command ends or is interrupted.
