@@ -29,21 +29,18 @@ public class AutoDrive1 extends SequentialCommandGroup {
   private PIDFController drivePid;
 
   private DifferentialDriveKinematics kinematics;
+  private String trajectoryJSON;
 
-
-  public AutoDrive1() {
+  public AutoDrive1( String trajectoryJSON ) {
     addRequirements(RobotContainer.driveSubsystem, RobotContainer.shooterSubsystem, RobotContainer.indexSubsystem, RobotContainer.intakeSubsystem);
     
-
+    this.trajectoryJSON = "output/" + trajectoryJSON + ".wpilib.json";
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     drivePid = new PIDFController( .3, 0.02, 0, 0.03 );
-    String trajectoryJSON = "output/Test.wpilib.json";
-    
-    RobotContainer.driveSubsystem.navX.reset();
     try {
       
       Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
@@ -72,12 +69,14 @@ public class AutoDrive1 extends SequentialCommandGroup {
     SmartDashboard.putNumber( "Target X", goal.poseMeters.getX());        SmartDashboard.putNumber( "Target Y", goal.poseMeters.getY());
     SmartDashboard.putNumber( "Actual X", RobotContainer.driveSubsystem.getPosition().getX());        SmartDashboard.putNumber( "Actual Y", RobotContainer.driveSubsystem.getPosition().getY());
 
-    System.out.println( left );
+    
     double right = wheelSpeeds.rightMetersPerSecond;
 
     double leftSpeed = RobotContainer.driveSubsystem.getLeftEncoderVelocity() * DriveSubsystem.rotToMeters / 60;
     double rightSpeed = RobotContainer.driveSubsystem.getRightEncoderVelocity() * DriveSubsystem.rotToMeters / 60;
     
+    System.out.println( leftSpeed + "vs" + left );
+
     RobotContainer.driveSubsystem.setMotors( drivePid.calculate( leftSpeed, left ), drivePid.calculate( rightSpeed, right  ) );
   }
 

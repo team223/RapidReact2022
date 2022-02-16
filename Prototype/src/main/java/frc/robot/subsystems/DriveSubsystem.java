@@ -37,7 +37,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public Pose2d currentPose;
 
-  public DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d( 213.69 ), new Pose2d( 8, 3, new Rotation2d( 213.69 )));
+  public DifferentialDriveOdometry odometry = new DifferentialDriveOdometry( new Rotation2d( 0 ), new Pose2d( 9.5, 3.5, new Rotation2d( 0 ) ));
 
   public static double rotToMeters;
 
@@ -55,6 +55,7 @@ public class DriveSubsystem extends SubsystemBase {
   {new CANSparkMax( 4, MotorType.kBrushless ), new CANSparkMax( 5, MotorType.kBrushless ), new CANSparkMax( 6, MotorType.kBrushless ) };
 
   public DriveSubsystem(){
+    navX.reset();
     rotToMeters = (1 / 10.714 ) * ( 6 * 0.0254 * Math.PI ); 
 
     for( int i = 0; i < 2; i++ ){
@@ -90,6 +91,7 @@ public class DriveSubsystem extends SubsystemBase {
         temp += Math.abs(leftMotors[i].getEncoder().getVelocity());
         temp += Math.abs(rightMotors[i].getEncoder().getVelocity());
     }
+    if( rightMotors[0].getEncoder().getVelocity() < 0 ){ temp *= -1; }
     return temp / 6;
   }
 
@@ -98,6 +100,7 @@ public class DriveSubsystem extends SubsystemBase {
     for (int i = 0; i < 3; i++){
         temp += Math.abs(leftMotors[i].getEncoder().getVelocity());
     }
+    if( leftMotors[0].getEncoder().getVelocity() < 0 ){ temp *= -1; }
     return temp / 3;
   }
 
@@ -106,6 +109,8 @@ public class DriveSubsystem extends SubsystemBase {
     for (int i = 0; i < 3; i++){
         temp += Math.abs(rightMotors[i].getEncoder().getVelocity());
     }
+
+    if( rightMotors[0].getEncoder().getVelocity() < 0 ){ temp *= -1; }
     return temp / 3;
   }
 
@@ -146,5 +151,6 @@ public class DriveSubsystem extends SubsystemBase {
 
     Rotation2d gyroAngle = Rotation2d.fromDegrees( -navX.getAngle() );
     currentPose = odometry.update( gyroAngle, distanceLeft * rotToMeters, distanceRight * rotToMeters );
+    System.out.println( rightMotors[0].getEncoder().getVelocity() );
   }
 }
