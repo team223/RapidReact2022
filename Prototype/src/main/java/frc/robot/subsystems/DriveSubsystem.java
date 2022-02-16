@@ -34,16 +34,21 @@ import frc.robot.RobotContainer;
  */
 public class DriveSubsystem extends SubsystemBase {
   public AHRS navX = new AHRS( SPI.Port.kMXP );
+  private double startingAngle = 0;
+  private double startingX = 9.5;
+  private double startingY = 3.5;
+
 
   public Pose2d currentPose;
 
-  public DifferentialDriveOdometry odometry = new DifferentialDriveOdometry( new Rotation2d( 0 ), new Pose2d( 9.5, 3.5, new Rotation2d( 0 ) ));
+  public DifferentialDriveOdometry odometry = new DifferentialDriveOdometry( new Rotation2d( startingAngle ), new Pose2d( startingX, startingY, new Rotation2d( startingAngle ) ));
 
   public static double rotToMeters;
 
   private double previousLeftDistance = 0;
   private double previousRightDistance = 0;
 
+  
   PIDController turnController;
   //public PIDController pid = new PIDController(Kp, Ki, Kd, Kf, ahrs);
   // Put methods for controlling this subsystem
@@ -55,7 +60,6 @@ public class DriveSubsystem extends SubsystemBase {
   {new CANSparkMax( 4, MotorType.kBrushless ), new CANSparkMax( 5, MotorType.kBrushless ), new CANSparkMax( 6, MotorType.kBrushless ) };
 
   public DriveSubsystem(){
-    navX.reset();
     rotToMeters = (1 / 10.714 ) * ( 6 * 0.0254 * Math.PI ); 
 
     for( int i = 0; i < 2; i++ ){
@@ -63,6 +67,8 @@ public class DriveSubsystem extends SubsystemBase {
       rightMotors[i].getEncoder().setPosition(0);
     }
   }
+
+
 
   //DO NOT CHANGE
   public void setMotors( double left, double right ){
@@ -151,6 +157,6 @@ public class DriveSubsystem extends SubsystemBase {
 
     Rotation2d gyroAngle = Rotation2d.fromDegrees( -navX.getAngle() );
     currentPose = odometry.update( gyroAngle, distanceLeft * rotToMeters, distanceRight * rotToMeters );
-    System.out.println( rightMotors[0].getEncoder().getVelocity() );
+    System.out.println( navX.getAngle() );
   }
 }
