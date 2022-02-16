@@ -20,7 +20,7 @@ public class PIDFController{
     public PIDFController(double kp, double ki, double kd, double kf) {
         this.kp = kp;
         this.ki = ki;
-        this.kd = kf;
+        this.kd = kd;
         this.kf = kf;
     }
 
