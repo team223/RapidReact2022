@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.RobotContainer;
 
 public class BodyCommand extends CommandBase {
@@ -26,6 +27,16 @@ public class BodyCommand extends CommandBase {
   @Override
   public void execute() {
   
+    //EXECUTES COMMAND THAT TOGGLES SOLENOID ON BUTTON PRESS
+    JoystickButton button = new JoystickButton( RobotContainer.joystick1, 3 );
+    button.whenActive( new CommandBase() {
+      @Override
+      public void initialize(){
+        RobotContainer.intakeSubsystem.toggleSolenoid();
+      }
+    });
+
+
     //SETS SHOOTER
     if( RobotContainer.joystick1.getRawButton( 4 ) ){
       RobotContainer.shooterSubsystem.setShooterSpeed( 1000 ); 

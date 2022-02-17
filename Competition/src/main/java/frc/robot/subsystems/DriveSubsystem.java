@@ -29,8 +29,6 @@ public class DriveSubsystem extends SubsystemBase {
   //Conversion factor between rotations and meters
   public static final double rotToMeters = (1 / 10.714 ) * ( 6 * 0.0254 * Math.PI ); 
 
-
-
   //Used in order to find change of position
   private double previousLeftDistance = 0;
   private double previousRightDistance = 0;
@@ -41,6 +39,26 @@ public class DriveSubsystem extends SubsystemBase {
   private static CANSparkMax[] rightMotors = 
   {new CANSparkMax( 4, MotorType.kBrushless ), new CANSparkMax( 5, MotorType.kBrushless ), new CANSparkMax( 6, MotorType.kBrushless ) };
 
+  //CONSTRUCTOR
+  public DriveSubsystem(){
+    odometry = new DifferentialDriveOdometry( new Rotation2d( 0 ) );
+    for( int i = 0; i < 2; i++ ){
+      leftMotors[i].getEncoder().setPosition(0);
+      rightMotors[i].getEncoder().setPosition(0);
+    }
+  }
+
+  //RESETS VALUES
+  public void reset( Pose2d pose2d ){
+    gyroscope.reset();
+
+    odometry = new DifferentialDriveOdometry( pose2d.getRotation(), pose2d );
+
+    for( int i = 0; i < 2; i++ ){
+      leftMotors[i].getEncoder().setPosition(0);
+      rightMotors[i].getEncoder().setPosition(0);
+    }
+  }
 
   //MOTOR SETTING METHODS
   public void setMotors( double left, double right ){
