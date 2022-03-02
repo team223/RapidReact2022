@@ -15,6 +15,6 @@ public class Auto2B extends SequentialCommandGroup {
   public Auto2B() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands( new AutoDrive1( "2B-1" ), new AutoDrive1( "2B-2" ));
+    addCommands( new AutoDrive1( "1 ball Left" )/*, new AutoDrive1( "2B-2" )*/);
   }
 }
