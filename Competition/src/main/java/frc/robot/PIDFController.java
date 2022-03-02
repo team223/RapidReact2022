@@ -18,14 +18,21 @@ public class PIDFController{
     public PIDFController(double kp, double ki, double kd, double kf) {
         this.kp = kp;
         this.ki = ki;
-        this.kd = kf;
+        this.kd = kd;
         this.kf = kf;
+    }
+
+    public void reset(){
+        integral = 0;
     }
 
     public double calculate(double measurement, double setpoint) {
         if( Math.abs( measurement ) < 0.0001 ){
+            integral = 0;
             return kf;
         }
+
+        System.out.println( integral );
         
         double error = setpoint - measurement;
         integral += error;

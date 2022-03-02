@@ -8,11 +8,13 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANPIDController.AccelStrategy;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -27,8 +29,7 @@ public class DriveSubsystem extends SubsystemBase {
   private DifferentialDriveOdometry odometry;
 
   //Conversion factor between rotations and meters
-  public static final double rotToMeters = (1 / 10.714 ) * ( 6 * 0.0254 * Math.PI ); 
-
+  public static final double rotToMeters = (1 / 10.714 ); 
   //Used in order to find change of position
   private double previousLeftDistance = 0;
   private double previousRightDistance = 0;
@@ -41,6 +42,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   //CONSTRUCTOR
   public DriveSubsystem(){
+    reset( new Pose2d( 0, 0, new Rotation2d( 0 ) ) );
     odometry = new DifferentialDriveOdometry( new Rotation2d( 0 ) );
     for( int i = 0; i < 2; i++ ){
       leftMotors[i].getEncoder().setPosition(0);
@@ -64,11 +66,19 @@ public class DriveSubsystem extends SubsystemBase {
   public void setMotors( double left, double right ){
     leftMotors[0].set( left ); 
     leftMotors[1].set( left ); 
-    leftMotors[2].set( left );  
+   leftMotors[2].set( left );  
 
     rightMotors[0].set( right ); 
     rightMotors[1].set( right ); 
     rightMotors[2].set( right ); 
+
+    /*leftMotors[0].burnFlash(); 
+    leftMotors[1].burnFlash(); 
+    leftMotors[2].burnFlash();  
+
+    rightMotors[0].burnFlash(); 
+    rightMotors[1].burnFlash(); 
+    rightMotors[2].burnFlash();*/
   }
 
   public void cheezyDrive( double stick1, double stick2 ){
@@ -80,7 +90,7 @@ public class DriveSubsystem extends SubsystemBase {
       stick2 = 0;
     }
 
-    setMotors( stick1 + stick2, stick1 - stick2 );
+    setMotors( ( stick1 + stick2 ) , ( stick1 - stick2 ));
   }
 
   //ACCESSOR METHODS
@@ -115,6 +125,8 @@ public class DriveSubsystem extends SubsystemBase {
   @Override
   public void periodic(){
     super.periodic();
+  
+
 
     //Calculates the change during the period
     double distanceLeft = leftMotors[0].getEncoder().getPosition() - previousLeftDistance;
@@ -124,6 +136,7 @@ public class DriveSubsystem extends SubsystemBase {
     Rotation2d gyroAngle = Rotation2d.fromDegrees( -gyroscope.getAngle() );
     currentPose = odometry.update( gyroAngle, distanceLeft * rotToMeters, distanceRight * rotToMeters );
 
+    System.out.println( currentPose.getX() + ", " + currentPose.getY() );
   }
 
 }

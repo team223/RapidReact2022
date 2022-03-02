@@ -20,6 +20,9 @@ public final class Constants {
     public static final int FEEDER_ID = 15;
     public static final int INTAKE_ID = 17;
 
+    public static final int LEFT_CLIMBER_ID = 9;
+    public static final int RIGHT_CLIMBER_ID = 8;
+
     public static final int SHOOTER_ID_1 = 10;
     public static final int SHOOTER_ID_2 = 11;
  

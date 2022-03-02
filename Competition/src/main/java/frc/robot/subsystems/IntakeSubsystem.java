@@ -10,8 +10,11 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+import org.ejml.dense.row.linsol.qr.SolveNullSpaceQRP_DDRM;
+
+import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -21,14 +24,15 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   private static CANSparkMax intake = new CANSparkMax( Constants.INTAKE_ID, MotorType.kBrushless );
 
-  private static DoubleSolenoid intakeSolenoid = new DoubleSolenoid( PneumaticsModuleType.CTREPCM, 0, 1 );
+  private static Solenoid solenoid = new Solenoid( 1, PneumaticsModuleType.REVPH, 7 );
+
   
   public void setIntake( double intakeValue ){
     intake.set( -intakeValue );
   }
 
-  public void toggleSolenoid(){
-    intakeSolenoid.toggle();
+  public void toggleSolenoid( ){
+    solenoid.toggle();
   }
 
 

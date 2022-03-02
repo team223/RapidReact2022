@@ -7,11 +7,20 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.RobotContainer;
 
 public class BodyCommand extends CommandBase {
+
+  private boolean buttonPressed = false;
+  private boolean canToggle = false;
+
+  private boolean buttonPressed1 = false;
+  private boolean canToggle1 = false;
 
   public BodyCommand() {
     addRequirements( RobotContainer.shooterSubsystem
@@ -28,43 +37,64 @@ public class BodyCommand extends CommandBase {
   public void execute() {
   
     //EXECUTES COMMAND THAT TOGGLES SOLENOID ON BUTTON PRESS
-    JoystickButton button = new JoystickButton( RobotContainer.joystick1, 3 );
-    button.whenActive( new CommandBase() {
-      @Override
-      public void initialize(){
-        RobotContainer.intakeSubsystem.toggleSolenoid();
-      }
-    });
+    if( RobotContainer.joystick2.getRawButton( 3 ) ){
+      buttonPressed = true;
+    }else{
+      buttonPressed = false;
+      canToggle = true;
+    }
 
+    if( buttonPressed && canToggle ){
+      RobotContainer.intakeSubsystem.toggleSolenoid();
+      buttonPressed = false;
+      canToggle = false;
+
+    }
+
+    RobotContainer.climberSubsystem.setClimbers( RobotContainer.joystick2.getRawAxis( 1 ) );
+
+     //EXECUTES COMMAND THAT TOGGLES SOLENOID ON BUTTON PRESS
+     if( RobotContainer.joystick2.getRawButton( 1 ) ){
+      buttonPressed1 = true;
+    }else{
+      buttonPressed1 = false;
+      canToggle1 = true;
+    }
+
+    if( buttonPressed1 && canToggle1 ){
+      RobotContainer.climberSubsystem.toggleSolenoid();
+      buttonPressed1 = false;
+      canToggle1 = false;
+
+    }
+
+    //RobotContainer.indexSubsystem.runCompressor();
 
     //SETS SHOOTER
-    if( RobotContainer.joystick1.getRawButton( 4 ) ){
-      RobotContainer.shooterSubsystem.setShooterSpeed( 1000 ); 
-    } else if( RobotContainer.joystick1.getRawButton( 5 )){
-      RobotContainer.shooterSubsystem.setShooter( 3000 ); 
+    if( RobotContainer.joystick2.getRawButton( 4 ) ){
+      RobotContainer.shooterSubsystem.setShooter(1); 
+    } else if( RobotContainer.joystick2.getRawButton( 5 )){
+      RobotContainer.shooterSubsystem.setShooterSpeed( 2500 ); 
     }else{
+      RobotContainer.shooterSubsystem.resetPID();
       RobotContainer.shooterSubsystem.setShooter(0);
     }
 
-    //SETS GATEWAY
-    if( RobotContainer.joystick1.getRawButton( 1 ) ){
-      RobotContainer.indexSubsystem.setGateway( .25 );
-    }else{
-      RobotContainer.indexSubsystem.setGateway( 0 );
-    }
-
     //SETS FEEDER
-    if( RobotContainer.joystick1.getRawButton( 2 ) ){
-      RobotContainer.indexSubsystem.setFeeder( .25 );
+    if( RobotContainer.joystick2.getRawButton( 2 ) ){
+      RobotContainer.indexSubsystem.setFeeder( 0.5 );
     }else{
       RobotContainer.indexSubsystem.setFeeder( 0 );
     }
 
     //SETS INTAKE
-    if( RobotContainer.joystick1.getRawButton( 0 ) ){
-      RobotContainer.intakeSubsystem.setIntake( 0.5 );
+    if( RobotContainer.joystick2.getRawButton( 6 ) ){
+      RobotContainer.intakeSubsystem.setIntake( -1 );
+      RobotContainer.indexSubsystem.setGateway( -.75 );
     }else{
       RobotContainer.intakeSubsystem.setIntake( 0 );
+      RobotContainer.indexSubsystem.setGateway( 0 );
+
     }
  }
 

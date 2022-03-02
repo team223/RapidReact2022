@@ -7,18 +7,21 @@ package frc.robot.commands.routines;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.*;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Routine2B extends ParallelCommandGroup {
+public class Routine2B extends SequentialCommandGroup {
   /** Creates a new Routine2B. */
   public Routine2B() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     Pose2d initPose2d = new Pose2d( 9.5, 3.5, new Rotation2d( 0.5, -0.1 ) );
-    addCommands( new Initialize(  initPose2d ), new ShootFor( 2, 3000 ), 
-    new DrivePath( "2B-1" ), new DrivePath( "2B-2" ) );
+    DrivePath path2B = new DrivePath( "2B-1" );
+    addCommands( new Initialize(  initPose2d ), 
+    path2B,
+    new DrivePath( "2B-2" ) );
   }
 }

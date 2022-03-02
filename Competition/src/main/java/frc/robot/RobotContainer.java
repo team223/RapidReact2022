@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.BodyCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.routines.*;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IndexSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -32,6 +33,8 @@ public class RobotContainer {
   public static IndexSubsystem indexSubsystem = new IndexSubsystem();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+  public static ClimberSubsystem climberSubsystem = new ClimberSubsystem();
+
   
   public static Command driveCommand = new DriveCommand();
   public static Command bodyCommand = new BodyCommand();

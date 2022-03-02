@@ -14,6 +14,6 @@ public class Gyro {
     }
 
     public void reset(){
-        zeroValue = getAngle();
+        zeroValue = navX.getAngle();
     }
 }

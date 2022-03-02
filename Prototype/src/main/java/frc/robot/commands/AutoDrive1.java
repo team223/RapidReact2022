@@ -69,12 +69,12 @@ public class AutoDrive1 extends SequentialCommandGroup {
     SmartDashboard.putNumber( "Target X", goal.poseMeters.getX());        SmartDashboard.putNumber( "Target Y", goal.poseMeters.getY());
     SmartDashboard.putNumber( "Actual X", RobotContainer.driveSubsystem.getPosition().getX());        SmartDashboard.putNumber( "Actual Y", RobotContainer.driveSubsystem.getPosition().getY());
 
-    
+
     double right = wheelSpeeds.rightMetersPerSecond;
 
     double leftSpeed = RobotContainer.driveSubsystem.getLeftEncoderVelocity() * DriveSubsystem.rotToMeters / 60;
     double rightSpeed = RobotContainer.driveSubsystem.getRightEncoderVelocity() * DriveSubsystem.rotToMeters / 60;
-    
+
     System.out.println( leftSpeed + "vs" + left );
 
     RobotContainer.driveSubsystem.setMotors( drivePid.calculate( leftSpeed, left ), drivePid.calculate( rightSpeed, right  ) );

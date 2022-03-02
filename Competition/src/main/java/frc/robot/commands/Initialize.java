@@ -8,11 +8,12 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class Initialize extends CommandBase {
+public class Initialize extends WaitFor {
   /** Creates a new Initialize. */
   private Pose2d initialPose;
   
   public Initialize( Pose2d pose2d ) {
+    super( 0.1 );
     addRequirements(RobotContainer.driveSubsystem);
 
     initialPose = pose2d;
@@ -21,20 +22,7 @@ public class Initialize extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    super.initialize();
     RobotContainer.driveSubsystem.reset( initialPose );
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {}
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
   }
 }

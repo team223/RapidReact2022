@@ -20,7 +20,7 @@ public class ShootFor extends WaitFor {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    super.execute();
     RobotContainer.shooterSubsystem.setShooterSpeed( speed );
 
     if( Math.abs( RobotContainer.shooterSubsystem.getSpeed() - speed ) < 100 ){
