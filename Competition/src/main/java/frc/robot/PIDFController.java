@@ -28,17 +28,17 @@ public class PIDFController{
 
     public double calculate(double measurement, double setpoint) {
         if( Math.abs( measurement ) < 0.0001 ){
-            integral = 0;
+            //integral = 0;
+            System.out.println( "RESET!!!" );
             return kf;
         }
-
-        System.out.println( integral );
         
         double error = setpoint - measurement;
         integral += error;
         double derivative = error - previousError;
 
         previousError = error;
+        
 
         return error * kp + integral * ki + derivative * kd;
     }

@@ -74,13 +74,13 @@ public class DriveSubsystem extends SubsystemBase {
   public void setMotors( double left, double right ){
   leftMotors[0].set( left ); //1
   //System.out.println("left: " +  leftMotors[0].getEncoder().getVelocity());
-  leftMotors[1].set( left ); //2
-  leftMotors[2].set( left );  //3
+  //leftMotors[1].set( left ); //2
+  //leftMotors[2].set( left );  //3
 
   rightMotors[0].set( right ); //4
   //System.out.println("right: " + rightMotors[0].getEncoder().getVelocity());
-  rightMotors[1].set( right ); //5
-  rightMotors[2].set( right ); //6
+ // rightMotors[1].set( right ); //5
+  //rightMotors[2].set( right ); //6
 /*
   leftMotors[0].burnFlash();
   leftMotors[1].burnFlash();

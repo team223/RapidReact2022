@@ -13,7 +13,11 @@ public class Gyro {
         return navX.getAngle() - zeroValue;
     }
 
+    public void reset( double angle ){
+        zeroValue = navX.getAngle() + angle;
+    }
+
     public void reset(){
-        zeroValue = navX.getAngle();
+        reset( 0 );
     }
 }

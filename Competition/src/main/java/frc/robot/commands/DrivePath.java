@@ -7,6 +7,7 @@ package frc.robot.commands;
 import java.io.IOException;
 import java.nio.file.Path;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.RamseteController;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
@@ -24,7 +25,7 @@ public class DrivePath extends CommandBase {
   /** Creates a new DrivePath. */
   private static long startTimeMillis = 0;
   private Trajectory trajectory;
-  private PIDFController drivePid;
+  private PIDController drivePid;
 
   private DifferentialDriveKinematics kinematics;
   private String trajectoryJSON;
@@ -38,7 +39,8 @@ public class DrivePath extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    drivePid = new PIDFController( .3, 0.02, 0, 0.03 );
+    drivePid = new PIDController(0.5, 0.3, 0);
+
     try {
       
       Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
@@ -63,15 +65,14 @@ public class DrivePath extends CommandBase {
     ChassisSpeeds updatedSpeeds = controller.calculate( RobotContainer.driveSubsystem.getPosition(), goal );
     DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(updatedSpeeds);
     double left = wheelSpeeds.leftMetersPerSecond;
-
     double right = wheelSpeeds.rightMetersPerSecond;
 
     double leftSpeed = RobotContainer.driveSubsystem.getLeftEncoderVelocity() * DriveSubsystem.rotToMeters / 60;
     double rightSpeed = RobotContainer.driveSubsystem.getRightEncoderVelocity() * DriveSubsystem.rotToMeters / 60;
-    
-    System.out.println( leftSpeed + "vs" + left );
-
-    RobotContainer.driveSubsystem.setMotors( drivePid.calculate( leftSpeed, left ), drivePid.calculate( rightSpeed, right  ) );
+    System.out.println( RobotContainer.driveSubsystem.getPosition().getRotation().getDegrees() + "vs " + goal.poseMeters.getRotation().getDegrees()  );
+    System.out.println( "target: " + goal.poseMeters.getX() + ", " + goal.poseMeters.getY() );
+    System.out.println( "actual: " +  RobotContainer.driveSubsystem.getPosition().getX() + ", " + RobotContainer.driveSubsystem.getPosition().getY() );
+    RobotContainer.driveSubsystem.setMotors( drivePid.calculate( leftSpeed, left ), drivePid.calculate( rightSpeed, -right  ) );
   }
 
   // Called once the command ends or is interrupted.

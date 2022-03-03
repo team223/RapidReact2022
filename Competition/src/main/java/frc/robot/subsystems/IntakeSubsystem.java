@@ -31,6 +31,10 @@ public class IntakeSubsystem extends SubsystemBase {
     intake.set( -intakeValue );
   }
 
+  public void setPiston( boolean on ){
+    solenoid.set( on );
+  }
+
   public void toggleSolenoid( ){
     solenoid.toggle();
   }

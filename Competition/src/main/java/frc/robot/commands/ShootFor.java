@@ -21,11 +21,20 @@ public class ShootFor extends WaitFor {
   @Override
   public void execute() {
     super.execute();
-    RobotContainer.shooterSubsystem.setShooterSpeed( speed );
+    RobotContainer.shooterSubsystem.setShooter( speed );
 
-    if( Math.abs( RobotContainer.shooterSubsystem.getSpeed() - speed ) < 100 ){
-      RobotContainer.indexSubsystem.setGateway( 0.25 );
-      RobotContainer.indexSubsystem.setFeeder( 0.25 );
+    if( Math.abs( RobotContainer.shooterSubsystem.getSpeed() - speed ) > 100 ){
+      RobotContainer.indexSubsystem.setGateway( 0.6 );
+      RobotContainer.indexSubsystem.setFeeder( 0.6 );
     }
-  }  
+  }
+
+   // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+    RobotContainer.shooterSubsystem.setShooter( 0 );
+
+    RobotContainer.indexSubsystem.setGateway( 0 );
+    RobotContainer.indexSubsystem.setFeeder( 0 );  }
+  
 }

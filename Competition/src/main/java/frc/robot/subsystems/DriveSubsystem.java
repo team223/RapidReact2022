@@ -29,7 +29,7 @@ public class DriveSubsystem extends SubsystemBase {
   private DifferentialDriveOdometry odometry;
 
   //Conversion factor between rotations and meters
-  public static final double rotToMeters = (1 / 10.714 ); 
+  public static final double rotToMeters = (1 / 10.714 ) * ( 6 * 0.0254 * Math.PI ); ; 
   //Used in order to find change of position
   private double previousLeftDistance = 0;
   private double previousRightDistance = 0;
@@ -52,8 +52,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   //RESETS VALUES
   public void reset( Pose2d pose2d ){
-    gyroscope.reset();
-
+    gyroscope.reset( pose2d.getRotation().getDegrees() );
+    System.out.println( "ANGLE- " + gyroscope.getAngle() );
     odometry = new DifferentialDriveOdometry( pose2d.getRotation(), pose2d );
 
     for( int i = 0; i < 2; i++ ){
@@ -69,10 +69,10 @@ public class DriveSubsystem extends SubsystemBase {
    leftMotors[2].set( left );  
 
     rightMotors[0].set( right ); 
-    rightMotors[1].set( right ); 
+   rightMotors[1].set( right ); 
     rightMotors[2].set( right ); 
-
-    /*leftMotors[0].burnFlash(); 
+/*
+    leftMotors[0].burnFlash(); 
     leftMotors[1].burnFlash(); 
     leftMotors[2].burnFlash();  
 
@@ -133,10 +133,9 @@ public class DriveSubsystem extends SubsystemBase {
     double distanceRight = rightMotors[0].getEncoder().getPosition() - previousRightDistance;
   
     //Calculates current position
-    Rotation2d gyroAngle = Rotation2d.fromDegrees( -gyroscope.getAngle() );
-    currentPose = odometry.update( gyroAngle, distanceLeft * rotToMeters, distanceRight * rotToMeters );
+    Rotation2d gyroAngle = Rotation2d.fromDegrees( gyroscope.getAngle() );
+    currentPose = odometry.update( gyroAngle, distanceLeft * rotToMeters, -distanceRight * rotToMeters );
 
-    System.out.println( currentPose.getX() + ", " + currentPose.getY() );
   }
 
 }
