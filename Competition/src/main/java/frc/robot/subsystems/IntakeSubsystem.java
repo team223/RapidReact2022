@@ -37,6 +37,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void toggleSolenoid( ){
     solenoid.toggle();
+
   }
 
 

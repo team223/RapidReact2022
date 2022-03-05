@@ -14,7 +14,8 @@ public class Gyro {
     }
 
     public void reset( double angle ){
-        zeroValue = navX.getAngle() + angle;
+        zeroValue = navX.getAngle() - angle;
+        System.out.println( "angle- " + angle + " value " + navX.getAngle() + " zero " + zeroValue);
     }
 
     public void reset(){

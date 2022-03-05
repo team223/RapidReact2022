@@ -19,16 +19,17 @@ public class Routine3B extends SequentialCommandGroup {
   public Routine3B() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    new SequentialCommandGroup(new ShootFor(10, 0.4));
-    Pose2d initPose2d = new Pose2d( 9.5, 3.5, new Rotation2d( 0 ) );
-    DrivePath path2B = new DrivePath( "2B-1" );
+    Pose2d initPose2d = new Pose2d(8.606178843254666 , 5.383410667418104, new Rotation2d( 1.5707963267948966 ) );
+    DrivePath path3B = new DrivePath( "3B-1" );
 
 
-    ParallelRaceGroup group1 = new ParallelRaceGroup( path2B, new Intake( -0.8 ) );
-    ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "2B-2" ), 
-    new SequentialCommandGroup( new WaitFor( 1.5 ), new ShootFor( 10, 0.4 ) ) );
 
-    addCommands( new Initialize(  initPose2d ), 
+    ParallelRaceGroup group1 = new ParallelRaceGroup( new ParallelCommandGroup( path3B, new SequentialCommandGroup( new WaitFor( 6 ), new RunBody( 0.15 ))
+    ), new Intake( -0.8 ) );
+    ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "3B-2" ), 
+    new SequentialCommandGroup( new WaitFor( 7 ), new ShootFor( 10, 0.4 ) ) );
+
+    addCommands( new Initialize(  initPose2d ), new ShootFor( 0.75, 0.4 ),
     group1, group2);
   }
 }
