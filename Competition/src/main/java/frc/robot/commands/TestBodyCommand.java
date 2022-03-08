@@ -10,12 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj.XboxController;
 
-public class BodyCommand extends CommandBase {
+public class TestBodyCommand extends CommandBase {
 
   private boolean buttonPressed = false;
   private boolean canToggle = false;
@@ -23,7 +23,7 @@ public class BodyCommand extends CommandBase {
   private boolean buttonPressed1 = false;
   private boolean canToggle1 = false;
 
-  public BodyCommand() {
+  public TestBodyCommand() {
     addRequirements( RobotContainer.shooterSubsystem
     , RobotContainer.indexSubsystem, RobotContainer.intakeSubsystem);
   }
@@ -33,12 +33,10 @@ public class BodyCommand extends CommandBase {
   public void initialize() {
   }
 
-  public boolean ohShit = false;
-
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+  
     //EXECUTES COMMAND THAT TOGGLES INTAKE SOLENOID ON BUTTON PRESS
     if( RobotContainer.joystick2.getRawButton( 3 ) ){
       buttonPressed = true;
@@ -54,18 +52,7 @@ public class BodyCommand extends CommandBase {
 
     }
 
-    if( RobotContainer.joystick2.getRawButton( 8 ) ){
-      ohShit = true;
-      RobotContainer.climberSubsystem.ohShit();
-    }
-
-    if( !ohShit ){
-      RobotContainer.climberSubsystem.setClimbers( RobotContainer.joystick2.getRawAxis( 1 ) );
-
-    }else{
-      RobotContainer.climberSubsystem.setLeftClimber(RobotContainer.joystick2.getRawAxis( 1 ));
-      RobotContainer.climberSubsystem.setRightClimber( RobotContainer.joystick2.getRawAxis( 5 ) );
-    }
+    RobotContainer.climberSubsystem.setClimbers( RobotContainer.joystick2.getRawAxis( 1 ) );
 
      //EXECUTES COMMAND THAT TOGGLES CLIMBER SOLENOID ON BUTTON PRESS
      if( RobotContainer.joystick2.getRawButton( 1 ) ){
@@ -76,11 +63,7 @@ public class BodyCommand extends CommandBase {
     }
 
     if( buttonPressed1 && canToggle1 ){
-      if( !ohShit ){
-        RobotContainer.climberSubsystem.runClimbers();
-      }else{
-        RobotContainer.climberSubsystem.toggleSolenoid();
-      }
+      RobotContainer.climberSubsystem.toggleSolenoid();
       buttonPressed1 = false;
       canToggle1 = false;
 
@@ -88,40 +71,32 @@ public class BodyCommand extends CommandBase {
 
     //RobotContainer.indexSubsystem.runCompressor();
 
-    //SETS FEEDER
-    if( RobotContainer.joystick2.getRawButton( 2 ) &&  RobotContainer.indexSubsystem.getBeamSensor() ){
-      RobotContainer.indexSubsystem.setFeeder( 0.35 );
-    }else{
-      RobotContainer.indexSubsystem.setFeeder( 0 );
-    }
-
     //SETS SHOOTER
     if( RobotContainer.joystick2.getRawButton( 4 ) ){
       RobotContainer.shooterSubsystem.setShooter(1); 
-      RobotContainer.indexSubsystem.setFeeder(0.75); 
     } else if( RobotContainer.joystick2.getRawButton( 5 )){
       RobotContainer.shooterSubsystem.setShooterSpeed( 2500 ); 
-      RobotContainer.indexSubsystem.setFeeder(0.75); 
     }else{
       RobotContainer.shooterSubsystem.resetPID();
       RobotContainer.shooterSubsystem.setShooter(0);
     }
 
-    
+    //SETS FEEDER
+    if( RobotContainer.joystick2.getRawButton( 2 ) ){
+      RobotContainer.indexSubsystem.setFeeder( 0.5 );
+    }else{
+      RobotContainer.indexSubsystem.setFeeder( 0 );
+    }
 
     //SETS INTAKE
     if( RobotContainer.joystick2.getRawButton( 6 ) ){
       RobotContainer.intakeSubsystem.setIntake( -1 );
       RobotContainer.indexSubsystem.setGateway( -.75 );
-    }else if( RobotContainer.joystick2.getRawButton( 7 ) ){
-      RobotContainer.intakeSubsystem.setIntake( 1 );
-      RobotContainer.indexSubsystem.setFeeder(-0.5);
     }else{
       RobotContainer.intakeSubsystem.setIntake( 0 );
       RobotContainer.indexSubsystem.setGateway( 0 );
 
     }
-
  }
 
   // Called once the command ends or is interrupted.

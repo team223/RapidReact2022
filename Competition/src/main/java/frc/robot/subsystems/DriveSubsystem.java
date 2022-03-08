@@ -90,7 +90,7 @@ public class DriveSubsystem extends SubsystemBase {
       stick2 = 0;
     }
 
-    setMotors( ( stick1 + stick2 ) , ( stick1 - stick2 ));
+    setMotors( ( stick1 + stick2 ) * 0.5 , ( stick1 - stick2 ) * 0.5);
   }
 
   //ACCESSOR METHODS
