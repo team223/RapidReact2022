@@ -21,6 +21,7 @@ public class DriveClimbers extends CommandBase {
   @Override
   public void initialize() {
     if( RobotContainer.climberSubsystem.getPosition() < position ){
+      System.out.println( "drive Up " );
       driveUp = true;
     }
   }

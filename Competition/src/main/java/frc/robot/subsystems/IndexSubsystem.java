@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -27,7 +28,7 @@ public class IndexSubsystem extends SubsystemBase {
 
   private final int SINGULATOR_EMPTY = 200;
 
-  private static DigitalOutput beamSensor = new DigitalOutput( 0 );
+  private static DigitalInput beamSensor = new DigitalInput( 0 );
   public static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
 
   public void setGateway( double gatewayValue ){
