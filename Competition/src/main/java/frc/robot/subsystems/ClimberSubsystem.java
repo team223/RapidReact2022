@@ -91,16 +91,16 @@ public class ClimberSubsystem extends SubsystemBase {
   public void setLeftClimber( double speed ){
     leftClimber.set( speed );
     if( -leftClimber.getEncoder().getPosition() >= 190 && speed < 0  ){
-      leftClimber.set( 0 );
+     // leftClimber.set( 0 );
     }else if( -leftClimber.getEncoder().getPosition() <= 0 && speed > 0 ){
-      leftClimber.set( 0 );
+      //leftClimber.set( 0 );
     }
   }
 
   public void setRightClimber( double speed ){
     rightClimber.set( speed );
     if( -rightClimber.getEncoder().getPosition() >= 190 && speed < 0  ){
-      rightClimber.set( 0 );
+     // rightClimber.set( 0 );
     }else if( -rightClimber.getEncoder().getPosition() <= 0 && speed > 0 ){
       //rightClimber.set( 0 );
     }
