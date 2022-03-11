@@ -20,6 +20,7 @@ public class WaitFor extends CommandBase {
   @Override
   public void initialize() {
     startTimeMillis = System.currentTimeMillis();
+    System.out.println( startTimeMillis );
   }
 
   // Called every time the scheduler runs while the command is scheduled.

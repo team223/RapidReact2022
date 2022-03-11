@@ -14,22 +14,21 @@ import frc.robot.commands.*;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Routine3BTest extends SequentialCommandGroup {
+public class Routine2BMean extends SequentialCommandGroup {
   /** Creates a new Routine2B. */
-  public Routine3BTest() {
+  public Routine2BMean() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    Pose2d initPose2d = new Pose2d(8.875619251849244 , 5.189413573230011, new Rotation2d( 1.2722973952087244 ) );
-    DrivePath path3B = new DrivePath( "3B-1Alt" );
+    Pose2d initPose2d = new Pose2d( 10.352, 3.206, new Rotation2d( -0.733 ) );
+    DrivePath mean1 = new DrivePath( "Mean1" );
 
 
+    ParallelRaceGroup group1 = new ParallelRaceGroup( mean1, new Intake( -0.8 ) );
+    ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "Mean2" ), 
+    new SequentialCommandGroup( new WaitFor( 2.5 ), new ShootFor( 1, 0.4 ) ) );
+    ParallelRaceGroup group3 = new ParallelRaceGroup( new DrivePath( "Mean3" ), new Intake( -0.8 ) );
 
-    ParallelRaceGroup group1 = new ParallelRaceGroup( new ParallelCommandGroup( path3B, new SequentialCommandGroup( new WaitFor( 6 ), new RunBody( 0.15 ))
-    ), new Intake( -0.8 ) );
-    ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "3B-2Alt" ), 
-    new SequentialCommandGroup( new WaitFor( 2.5 ), new ShootFor( 10, 0.4 ) ) );
-
-    addCommands( new Initialize(  initPose2d ), new ShootFor( 0.5, 0.4 ),
-    group1, group2);
+    addCommands( new Initialize(  initPose2d ), 
+    group1, group2, group3, new ShootFor( 2, 0.6 ));
   }
 }

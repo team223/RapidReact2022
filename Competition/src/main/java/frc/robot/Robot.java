@@ -7,8 +7,15 @@ package frc.robot;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.routines.Routine1BLeft;
+import frc.robot.commands.routines.Routine1BRight;
+import frc.robot.commands.routines.Routine2B;
+import frc.robot.commands.routines.Routine2BMean;
+import frc.robot.commands.routines.Routine3BTest;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,15 +28,35 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
+  private final Command routine1left = new Routine1BLeft();
+    private final Command routine1right = new Routine1BRight();
+
+
+    private final Command routine2 = new Routine2B();
+    private final Command routine3 = new Routine3BTest();
+    private final Command routine2mean = new Routine2BMean();
+    
+    static SendableChooser<Command> m_chooser = new SendableChooser<>();
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
   @Override
   public void robotInit() {
+    m_chooser.setDefaultOption("Routine 1 Left", routine1left);
+    m_chooser.addOption("Routine 1 Right", routine1right);
+    m_chooser.addOption("Routine 2", routine2);
+    m_chooser.addOption("Routine 3", routine3);
+    m_chooser.addOption("Routine 2 Mean", routine2mean);
+
+
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    
+    SmartDashboard.putData(m_chooser);
+
   }
 
   /**
@@ -74,6 +101,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove

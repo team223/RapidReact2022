@@ -7,7 +7,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.BodyCommand;
 import frc.robot.commands.DriveCommand;
@@ -43,6 +44,15 @@ public class RobotContainer {
   public static Joystick joystick1 = new Joystick(0);
   public static Joystick joystick2 = new Joystick(1);
 
+
+    // A simple auto routine that drives forward a specified distance, and then stops.
+    
+
+// A complex auto routine that drives forward, drops a hatch, and then drives backward.
+
+// A chooser for autonomous commands
+
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -63,7 +73,12 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
+    System.out.println( "test" );
+    
+
+// Put the chooser on the dashboard
+
     // An ExampleCommand will run in autonomous
-    return new Routine3BTest();
+    return Robot.m_chooser.getSelected();
   }
 }
