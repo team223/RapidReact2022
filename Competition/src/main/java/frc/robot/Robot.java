@@ -11,11 +11,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.routines.Routine1BLeft;
+import frc.robot.commands.routines.Routine1BLeftS;
 import frc.robot.commands.routines.Routine1BRight;
 import frc.robot.commands.routines.Routine2B;
 import frc.robot.commands.routines.Routine2BMean;
-import frc.robot.commands.routines.Routine3BTest;
+import frc.robot.commands.routines.Routine3BLow;
+import frc.robot.commands.routines.Routine4BLow;
+//import frc.robot.commands.routines.RoutineHigh2B;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -28,13 +30,19 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  private final Command routine1left = new Routine1BLeft();
+  private final Command routine1left = new Routine1BLeftS();
     private final Command routine1right = new Routine1BRight();
 
 
     private final Command routine2 = new Routine2B();
-    private final Command routine3 = new Routine3BTest();
+    private final Command routine3low = new Routine3BLow();
     private final Command routine2mean = new Routine2BMean();
+    private final Command routine4low = new Routine4BLow();
+    //private final Command routine2high = new Routine2BHigh();
+    //private final Command routine3high = new Routine3BHigh();
+    //private final Command routine4high = new Routine4BHigh();
+    //private final Command routine5high = new Routine5BHigh();
+
     
     static SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -47,8 +55,12 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Routine 1 Left", routine1left);
     m_chooser.addOption("Routine 1 Right", routine1right);
     m_chooser.addOption("Routine 2", routine2);
-    m_chooser.addOption("Routine 3", routine3);
+    m_chooser.addOption("Routine 3", routine3low);
     m_chooser.addOption("Routine 2 Mean", routine2mean);
+    m_chooser.addOption("Routine 4", routine4low);
+    //m_chooser.addOption("Routine 2 High", routine2high);
+
+
 
 
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our

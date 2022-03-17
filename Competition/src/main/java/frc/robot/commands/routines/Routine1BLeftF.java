@@ -14,13 +14,13 @@ import frc.robot.commands.*;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Routine1BLeft extends SequentialCommandGroup {
+public class Routine1BLeftF extends SequentialCommandGroup {
   /** Creates a new Routine2B. */
-  public Routine1BLeft() {
+  public Routine1BLeftF() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    Pose2d initPose2d = new Pose2d( 9.759, 4.176, new Rotation2d( 1 ) );
-    DrivePath path1B = new DrivePath( "1B-Right" );
+    Pose2d initPose2d = new Pose2d( 8.336738434660091, 5.372633051074322, new Rotation2d( 1 ) );
+    DrivePath path1B = new DrivePath( "1B-LeftF" );
 
 
     ParallelRaceGroup group1 = new ParallelRaceGroup( path1B, new Intake( -0.8 ) );

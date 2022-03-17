@@ -42,6 +42,7 @@ public class BodyCommand extends CommandBase {
   @Override
   public void execute() {
 
+    
     //EXECUTES COMMAND THAT TOGGLES INTAKE SOLENOID ON BUTTON PRESS
     if( RobotContainer.joystick1.getRawAxis( 2 ) > 0.5 ){
       buttonPressed = true;
@@ -56,7 +57,6 @@ public class BodyCommand extends CommandBase {
       canToggle = false;
 
     }
-
 
     //Oh SHit toggle
     if( RobotContainer.joystick2.getRawButton( 7 ) ){
@@ -74,13 +74,13 @@ public class BodyCommand extends CommandBase {
     }
 
 
-    //SETS CLIMB ERS
+    //SETS CLIMBERS
     if( !manual ){
       RobotContainer.climberSubsystem.setClimbers( RobotContainer.joystick2.getRawAxis( 1 ) );
 
     }else{
-      RobotContainer.climberSubsystem.setLeftClimber(RobotContainer.joystick2.getRawAxis( 1 ));
-      RobotContainer.climberSubsystem.setRightClimber( RobotContainer.joystick2.getRawAxis( 5 ) );
+      RobotContainer.climberSubsystem.setLeftClimber(RobotContainer.joystick2.getRawAxis( 5 ));
+      RobotContainer.climberSubsystem.setRightClimber( RobotContainer.joystick2.getRawAxis( 1 ) );
     }
 
      //EXECUTES COMMAND THAT TOGGLES CLIMBER SOLENOID ON BUTTON PRESS
@@ -115,20 +115,19 @@ public class BodyCommand extends CommandBase {
     if( RobotContainer.joystick2.getRawButton( 6 ) ){
       RobotContainer.shooterSubsystem.setShooter(1); 
     } else if( RobotContainer.joystick2.getRawButton( 5 )){
-      RobotContainer.shooterSubsystem.setShooterSpeed( 2500 ); 
+      RobotContainer.shooterSubsystem.setShooterSpeed( 2000 ); 
     }else{
       RobotContainer.shooterSubsystem.resetPID();
       RobotContainer.shooterSubsystem.setShooter(0);
     }
 
     
-System.out.println( manual );
     //SETS INTAKE
     if( RobotContainer.joystick1.getRawAxis( 3 ) > 0.5 ){
       RobotContainer.intakeSubsystem.setIntake( -1 );
       RobotContainer.indexSubsystem.setGateway( -.5 );
-      if( RobotContainer.indexSubsystem.getBeamSensor() ){
-        RobotContainer.indexSubsystem.setFeeder( 0.25 );
+      if( RobotContainer.indexSubsystem.getBallSensor() ){
+        RobotContainer.indexSubsystem.setFeeder( 0.3 );
       }
     }else if( RobotContainer.joystick2.getRawButton( 3 ) ){
       RobotContainer.intakeSubsystem.setIntake( 1 );

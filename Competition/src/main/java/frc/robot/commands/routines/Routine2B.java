@@ -20,11 +20,11 @@ public class Routine2B extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     Pose2d initPose2d = new Pose2d( 10.578, 2.948, new Rotation2d( -0.7853981633974483 ) );
-    DrivePath path2B = new DrivePath( "2B-1" );
+    DrivePath path2B = new DrivePath( "2B-1S" );
 
 
     ParallelRaceGroup group1 = new ParallelRaceGroup( path2B, new Intake( -0.8 ) );
-    ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "2B-2" ), 
+    ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "2B-2S" ), 
     new SequentialCommandGroup( new WaitFor( 3 ), new ShootFor( 10, 0.4 ) ) );
 
     addCommands( new Initialize(  initPose2d ), 

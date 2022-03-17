@@ -24,8 +24,8 @@ public class ShootFor extends WaitFor {
     RobotContainer.shooterSubsystem.setShooter( speed );
     System.out.println( "running" );
     if( Math.abs( RobotContainer.shooterSubsystem.getSpeed() - speed ) > 100 ){
-      RobotContainer.indexSubsystem.setGateway( 0.6 );
-      RobotContainer.indexSubsystem.setFeeder( 0.6 );
+      RobotContainer.indexSubsystem.setGateway( 0.4 );
+      RobotContainer.indexSubsystem.setFeeder( 0.4 );
     }
   }
 

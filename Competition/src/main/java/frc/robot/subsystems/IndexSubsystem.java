@@ -28,15 +28,15 @@ public class IndexSubsystem extends SubsystemBase {
 
   private final int SINGULATOR_EMPTY = 200;
 
-  private static DigitalInput beamSensor = new DigitalInput( 0 );
+  private static DigitalInput ballSensor = new DigitalInput( 0 );
   public static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-intake");
 
   public void setGateway( double gatewayValue ){
     gateway.set( ControlMode.PercentOutput, gatewayValue );
   }
 
-  public boolean getBeamSensor(){
-    return beamSensor.get();
+  public boolean getBallSensor(){
+    return ballSensor.get();
   }
 
   private double proximity;

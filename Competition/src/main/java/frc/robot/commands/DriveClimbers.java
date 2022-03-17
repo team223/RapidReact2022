@@ -20,7 +20,7 @@ public class DriveClimbers extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if( RobotContainer.climberSubsystem.getPosition() < position ){
+    if( RobotContainer.climberSubsystem.getLPosition() < position ){
       System.out.println( "drive Up " );
       driveUp = true;
     }
@@ -29,7 +29,8 @@ public class DriveClimbers extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+  
+  
       if( driveUp ){
         RobotContainer.climberSubsystem.setClimbers( -1 );
       }else{
@@ -44,15 +45,15 @@ public class DriveClimbers extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if( RobotContainer.climberSubsystem.getPosition() <= 0 && !driveUp ){
+    if( RobotContainer.climberSubsystem.getLPosition() <= 0 && !driveUp ){
       return true;
     }
 
     if( driveUp ){
-      return RobotContainer.climberSubsystem.getPosition() >= position;
+      return RobotContainer.climberSubsystem.getLPosition() >= position;
 
     }else{
-      return RobotContainer.climberSubsystem.getPosition() <= position;
+      return RobotContainer.climberSubsystem.getLPosition() <= position;
     }
   }
 }

@@ -32,7 +32,7 @@ public class DriveVeloc extends CommandBase {
     SmartDashboard.putNumber( "right", rightSpeed);
 
 
-    System.out.println( leftSpeed );
+    
 
     RobotContainer.driveSubsystem.setMotors( drivePid.calculate( leftSpeed, 0.25 ), drivePid.calculate( rightSpeed, 0.25  ) );
   }
