@@ -8,11 +8,14 @@ import frc.robot.RobotContainer;
 
 public class ShootFor extends WaitFor {
   /** Creates a new ShootFor. */
-  private double speed;
+  private double SSpeed;
+  private double RSpeed;
+  private int shooterCounter;
 
-  public ShootFor( double time, double speed ) {
+  public ShootFor( double time, double SSpeed, double RSpeed ) {
     super( time );
-    this.speed = speed;
+    this.SSpeed = SSpeed;
+    this.RSpeed = RSpeed;
 
     addRequirements( RobotContainer.indexSubsystem, RobotContainer.shooterSubsystem );
   }
@@ -21,11 +24,13 @@ public class ShootFor extends WaitFor {
   @Override
   public void execute() {
     super.execute();
-    RobotContainer.shooterSubsystem.setShooter( speed );
+    RobotContainer.shooterSubsystem.setShooterSpeed( SSpeed );
+    RobotContainer.shooterSubsystem.setRoller( RSpeed);
     System.out.println( "running" );
-    if( Math.abs( RobotContainer.shooterSubsystem.getSpeed() - speed ) > 100 ){
-      RobotContainer.indexSubsystem.setGateway( 0.4 );
-      RobotContainer.indexSubsystem.setFeeder( 0.4 );
+    if( shooterCounter>30 ){
+      RobotContainer.indexSubsystem.setFeeder( 0.75 );
+    }
+    else{RobotContainer.indexSubsystem.setFeeder(0);     shooterCounter++;
     }
   }
 
@@ -33,8 +38,7 @@ public class ShootFor extends WaitFor {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.shooterSubsystem.setShooter( 0 );
-
-    RobotContainer.indexSubsystem.setGateway( 0 );
+    shooterCounter = 0;
     RobotContainer.indexSubsystem.setFeeder( 0 );  }
   
 }

@@ -91,10 +91,8 @@ public class TestBodyCommand extends CommandBase {
     //SETS INTAKE
     if( RobotContainer.joystick2.getRawButton( 6 ) ){
       RobotContainer.intakeSubsystem.setIntake( -1 );
-      RobotContainer.indexSubsystem.setGateway( -.75 );
     }else{
       RobotContainer.intakeSubsystem.setIntake( 0 );
-      RobotContainer.indexSubsystem.setGateway( 0 );
 
     }
  }

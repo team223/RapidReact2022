@@ -37,11 +37,14 @@ public class BodyCommand extends CommandBase {
   }
 
   public boolean manual = true;
+  private int twoBallCounter = 0;
+  private int threeBallCounter = 0;
+  private int shooterCounter = 0;
+  private boolean colorChecked = false;
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
     
     //EXECUTES COMMAND THAT TOGGLES INTAKE SOLENOID ON BUTTON PRESS
     if( RobotContainer.joystick1.getRawAxis( 2 ) > 0.5 ){
@@ -104,39 +107,96 @@ public class BodyCommand extends CommandBase {
 
     //RobotContainer.indexSubsystem.runCompressor();
 
-    //SETS FEEDER
-    if( RobotContainer.joystick2.getRawButton( 2 ) ){
-      RobotContainer.indexSubsystem.setFeeder( 0.75 );
-    }else{
-      RobotContainer.indexSubsystem.setFeeder( 0 );
-    }
 
     //SETS SHOOTER
     if( RobotContainer.joystick2.getRawButton( 6 ) ){
-      RobotContainer.shooterSubsystem.setShooter(1); 
+      RobotContainer.shooterSubsystem.setShooterSpeed( 2200 );
+      RobotContainer.shooterSubsystem.setRoller(0.95 ); 
     } else if( RobotContainer.joystick2.getRawButton( 5 )){
-      RobotContainer.shooterSubsystem.setShooterSpeed( 2000 ); 
+      RobotContainer.shooterSubsystem.setShooterSpeed( 2000 );
+      RobotContainer.shooterSubsystem.setRoller(0.75 ); 
     }else{
       RobotContainer.shooterSubsystem.resetPID();
       RobotContainer.shooterSubsystem.setShooter(0);
+    }
+
+
+    
+    //SETS FEEDER
+    if( RobotContainer.joystick2.getRawButton( 2 ) ){
+      shooterCounter++;
+      if( shooterCounter > 30 ){
+        RobotContainer.indexSubsystem.setFeeder( 0.75 );
+      }else if( shooterCounter <= 6 ){
+        RobotContainer.indexSubsystem.setFeeder( 0.75 );
+      }else{
+        RobotContainer.indexSubsystem.setFeeder( 0);
+
+      }
+    }else{
+      shooterCounter = 0;
+      RobotContainer.indexSubsystem.setFeeder( 0 );
     }
 
     
     //SETS INTAKE
     if( RobotContainer.joystick1.getRawAxis( 3 ) > 0.5 ){
       RobotContainer.intakeSubsystem.setIntake( -1 );
-      RobotContainer.indexSubsystem.setGateway( -.5 );
-      if( RobotContainer.indexSubsystem.getBallSensor() ){
-        RobotContainer.indexSubsystem.setFeeder( 0.3 );
+      if( RobotContainer.indexSubsystem.getBallSensor( 0 ) ){
+        RobotContainer.indexSubsystem.setFeeder( 0.5 );
       }
-    }else if( RobotContainer.joystick2.getRawButton( 3 ) ){
-      RobotContainer.intakeSubsystem.setIntake( 1 );
-      RobotContainer.indexSubsystem.setFeeder(-0.5);
-      RobotContainer.shooterSubsystem.setShooter( -0.5 );
     }else{
+      
+     
       RobotContainer.intakeSubsystem.setIntake( 0 );
-      RobotContainer.indexSubsystem.setGateway( 0 );
 
+    }
+
+    if(RobotContainer.indexSubsystem.hasTwoBalls() ){
+      if( twoBallCounter >= 50 && twoBallCounter < 60 ){
+        RobotContainer.intakeSubsystem.setPiston(false);
+        twoBallCounter++;
+      }else if( twoBallCounter > 60 ){
+      }else{
+        twoBallCounter++;
+
+      }
+    }else{
+      twoBallCounter = 0;
+    }
+
+    if(RobotContainer.indexSubsystem.hasThreeBalls() && RobotContainer.intakeSubsystem.getPiston() ){
+      if( threeBallCounter >= 25 ){
+        SpitFor spitFor = new SpitFor( 1 );
+        spitFor.schedule();
+        threeBallCounter = 0;
+      }else{
+        threeBallCounter++;
+      }
+    }else{
+      threeBallCounter = 0;
+    }
+
+    if( RobotContainer.joystick2.getRawButton( 3 ) ){
+      RobotContainer.intakeSubsystem.setIntake( 1 );
+      RobotContainer.indexSubsystem.setFeeder(-0.7);
+      RobotContainer.shooterSubsystem.setShooter( -0.5 );
+      RobotContainer.intakeSubsystem.setPiston(true);
+
+    }
+
+    if( RobotContainer.indexSubsystem.ballSensor[2].get() ){
+      if( !colorChecked ){
+        if( RobotContainer.indexSubsystem.colorSensor.get() ){
+          System.out.println( "red" );
+        }else{
+          System.out.println( "blue" );
+        }
+      }
+
+      colorChecked = true;
+    }else{
+      colorChecked = false;
     }
 
  }

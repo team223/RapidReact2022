@@ -24,7 +24,7 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   private static CANSparkMax intake = new CANSparkMax( Constants.INTAKE_ID, MotorType.kBrushless );
 
-  private static Solenoid solenoid = new Solenoid( 1, PneumaticsModuleType.REVPH, 7 );
+  private static Solenoid solenoid = new Solenoid( 30, PneumaticsModuleType.CTREPCM, 5 );
 
   
   public void setIntake( double intakeValue ){
@@ -33,6 +33,10 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void setPiston( boolean on ){
     solenoid.set( on );
+  }
+
+  public boolean getPiston(){
+    return solenoid.get();
   }
 
   public void toggleSolenoid( ){

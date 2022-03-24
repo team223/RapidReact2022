@@ -53,7 +53,6 @@ public class DriveSubsystem extends SubsystemBase {
   //RESETS VALUES
   public void reset( Pose2d pose2d ){
     gyroscope.reset( pose2d.getRotation().getDegrees() );
-    System.out.println( "ANGLE- " + gyroscope.getAngle() );
     odometry = new DifferentialDriveOdometry( pose2d.getRotation(), pose2d );
 
     for( int i = 0; i < 2; i++ ){

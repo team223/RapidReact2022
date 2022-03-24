@@ -29,10 +29,10 @@ public class ClimberSubsystem extends SubsystemBase {
   private static CANSparkMax leftClimber = new CANSparkMax( Constants.LEFT_CLIMBER_ID, MotorType.kBrushless );
   private static CANSparkMax rightClimber = new CANSparkMax( Constants.RIGHT_CLIMBER_ID, MotorType.kBrushless );
 
-  private static Solenoid actuation = new Solenoid( 1, PneumaticsModuleType.REVPH, 6 );
+  private static Solenoid actuation = new Solenoid( 30, PneumaticsModuleType.CTREPCM, 6 );
   
-  private static DigitalInput lClimbSensor = new DigitalInput( 1 );
-  private static DigitalInput rClimbSensor = new DigitalInput( 2 );
+  private static DigitalInput lClimbSensor = new DigitalInput( 2 );
+  private static DigitalInput rClimbSensor = new DigitalInput( 1 );
 
 
 

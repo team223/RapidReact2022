@@ -25,7 +25,7 @@ public class Routine2BHigh extends SequentialCommandGroup {
 
     ParallelRaceGroup group1 = new ParallelRaceGroup( path2B, new Intake( -0.8 ) );
     ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "2B-2F" ), 
-    new SequentialCommandGroup( new WaitFor( 0.5 ), new ShootFor( 10, 1 ) ) );
+    new SequentialCommandGroup( new WaitFor( 3 ), new ShootFor( 1.3, 2000,0.75 ), new ShootFor(1.3,2000,0.75) ) );
 
     addCommands( new Initialize(  initPose2d ), 
     group1, group2);

@@ -24,11 +24,11 @@ public class Routine2BMean extends SequentialCommandGroup {
 
 
     ParallelRaceGroup group1 = new ParallelRaceGroup( mean1, new Intake( -0.8 ) );
-    ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "Mean2" ), 
-    new SequentialCommandGroup( new WaitFor( 2.5 ), new ShootFor( 1, 0.4 ) ) );
+    //ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "Mean2" ), 
+    //new SequentialCommandGroup( new WaitFor( 2.5 ), new ShootFor( 1, 0.4 ) ) );
     ParallelRaceGroup group3 = new ParallelRaceGroup( new DrivePath( "Mean3" ), new Intake( -0.8 ) );
 
-    addCommands( new Initialize(  initPose2d ), 
-    group1, group2, group3, new ShootFor( 2, 0.6 ));
+    //addCommands( new Initialize(  initPose2d ), 
+    //group1, group2, group3, new ShootFor( 2, 0.6 ));
   }
 }

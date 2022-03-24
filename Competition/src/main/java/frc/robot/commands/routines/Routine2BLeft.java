@@ -24,10 +24,10 @@ public class Routine2BLeft extends SequentialCommandGroup {
 
 
     ParallelRaceGroup group1 = new ParallelRaceGroup( path2B, new Intake( -0.8 ) );
-    ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "2B-2Left" ), 
-    new SequentialCommandGroup( new WaitFor( 3 ), new ShootFor( 10, 0.4 ) ) );
+    //ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "2B-2Left" ), 
+    //new SequentialCommandGroup( new WaitFor( 3 ), new ShootFor( 10, 0.4 ) ) );
 
-    addCommands( new Initialize(  initPose2d ), 
-    group1, group2);
+    //addCommands( new Initialize(  initPose2d ), 
+    //group1, group2);
   }
 }

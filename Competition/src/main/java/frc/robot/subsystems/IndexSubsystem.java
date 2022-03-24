@@ -23,61 +23,42 @@ import frc.robot.Constants.CargoColor;
 
 public class IndexSubsystem extends SubsystemBase {
 
-  private static TalonSRX gateway = new TalonSRX( Constants.GATEWAY_ID );
   private static TalonSRX feeder = new TalonSRX( Constants.FEEDER_ID );
 
   private final int SINGULATOR_EMPTY = 200;
 
-  private static DigitalInput ballSensor = new DigitalInput( 0 );
+  public DigitalInput[] ballSensor = { new DigitalInput( 0 ), new DigitalInput( 3 ), new DigitalInput( 4 ) };
+  public DigitalInput colorSensor = new DigitalInput( 5 );
   public static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-intake");
 
-  public void setGateway( double gatewayValue ){
-    gateway.set( ControlMode.PercentOutput, gatewayValue );
+
+  public boolean getBallSensor( int sensor){
+    return ballSensor[sensor].get( );
   }
 
-  public boolean getBallSensor(){
-    return ballSensor.get();
-  }
-
-  private double proximity;
-  private double red;
-  private double green;
-  private double blue;
-  private boolean isRed;
-
-  private boolean allianceRed = true;
-
-  public void displayCargoColor() {
-    double [] defaultColor = {0, 0, 0};
-    proximity = table.getEntry("proximity1").getDouble(0.0);
-    red = table.getEntry("likelycolor1").getDoubleArray(defaultColor)[0];
-    green = table.getEntry("likelycolor1").getDoubleArray(defaultColor)[1];
-    blue = table.getEntry("likelycolor1").getDoubleArray(defaultColor)[2];
-
-    SmartDashboard.putNumber("red", red);
-    SmartDashboard.putNumber("green", green);
-    SmartDashboard.putNumber("blue", blue);
-
-    if (proximity < SINGULATOR_EMPTY) {
-
-    } 
-
-    if (red > 1.2 * blue) {
-      isRed = true;
-      SmartDashboard.putString("RawColor", "RED");
-    } else if (blue > 1.2 * red) {
-      isRed = false;
-      SmartDashboard.putString("RawColor", "BLUE");
+  public boolean hasTwoBalls(){
+    if( ballSensor[0].get() || ballSensor[2].get() ){
+      return false;
     }
+    return true;
+  }
+
+  public boolean hasThreeBalls(){
+    for( int i = 0; i < ballSensor.length; i++ ){
+      if( ballSensor[i].get() ){
+        return false;
+      }
+    }
+
+    return true;
   }
 
   public void setFeeder( double feederValue ){
-    feeder.set( ControlMode.PercentOutput, feederValue );
+    feeder.set( ControlMode.PercentOutput, -feederValue );
   }
 
   @Override
   public void periodic() {
-    displayCargoColor();
     // This method will be called once per scheduler run
   }
 }

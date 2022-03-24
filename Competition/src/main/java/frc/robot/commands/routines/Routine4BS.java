@@ -14,22 +14,27 @@ import frc.robot.commands.*;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Routine3BLow extends SequentialCommandGroup {
+public class Routine4BS extends SequentialCommandGroup {
   /** Creates a new Routine2B. */
-  public Routine3BLow() {
+  public Routine4BS() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    Pose2d initPose2d = new Pose2d(8.875619251849244 , 5.189413573230011, new Rotation2d( 1.2722973952087244 ) );
-    DrivePath path3B = new DrivePath( "3B-1" );
+    Pose2d initPose2d = new Pose2d(9.953380886227544 , 5.911513868263473, new Rotation2d( 0.4015 ) );
+    DrivePath path4B = new DrivePath( "4B-1S" );
 
 
 
-    ParallelRaceGroup group1 = new ParallelRaceGroup( new ParallelCommandGroup( path3B, new SequentialCommandGroup( new WaitFor( 6 ), new RunBody( 0.15 ))
+    ParallelRaceGroup group1 = new ParallelRaceGroup( new ParallelCommandGroup( path4B, new SequentialCommandGroup( new WaitFor( 1 ), new RunBody( 0.15 ))
     ), new Intake( -0.8 ) );
-    ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "3B-2" ), 
-    new SequentialCommandGroup( new WaitFor( 2.5 ), new ShootFor( 10, 0.4 ) ),new Intake(-0.8) );
+    //ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "4B-2S" ), 
+    //new SequentialCommandGroup( new WaitFor( 3.5 ), new ShootFor( 10, 0.4 ) ) );
+    ParallelRaceGroup group3 = new ParallelRaceGroup( new DrivePath( "4B-3S" ), 
+    new Intake(-0.8) );
+    //ParallelRaceGroup group4 = new ParallelRaceGroup( new DrivePath( "4B-4S" ), 
+    //new SequentialCommandGroup( new WaitFor( 20 ), new ShootFor( 10, 0.4 ) ) );
 
-    addCommands( new Initialize(  initPose2d ), new ShootFor( 0.7, 0.4 ),
-    group1, group2);
+
+    //addCommands( new Initialize(  initPose2d ),
+    //group1, group2, group3, group4);
   }
 }
