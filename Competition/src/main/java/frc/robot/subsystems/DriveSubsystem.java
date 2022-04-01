@@ -44,6 +44,7 @@ public class DriveSubsystem extends SubsystemBase {
   public DriveSubsystem(){
     reset( new Pose2d( 0, 0, new Rotation2d( 0 ) ) );
     odometry = new DifferentialDriveOdometry( new Rotation2d( 0 ) );
+    System.out.println(odometry);
     for( int i = 0; i < 2; i++ ){
       leftMotors[i].getEncoder().setPosition(0);
       rightMotors[i].getEncoder().setPosition(0);
@@ -89,7 +90,7 @@ public class DriveSubsystem extends SubsystemBase {
       stick2 = 0;
     }
 
-    setMotors( ( stick1 + stick2 ) * 0.5 , ( stick1 - stick2 ) * 0.5);
+    setMotors( ( stick1 + stick2 ) * 0.75 , ( stick1 - stick2 ) * 0.75);
   }
 
   //ACCESSOR METHODS

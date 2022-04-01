@@ -70,8 +70,6 @@ public class DrivePath extends CommandBase {
     double leftSpeed = RobotContainer.driveSubsystem.getLeftEncoderVelocity() * DriveSubsystem.rotToMeters / 60;
     double rightSpeed = RobotContainer.driveSubsystem.getRightEncoderVelocity() * DriveSubsystem.rotToMeters / 60;
     System.out.println( RobotContainer.driveSubsystem.getPosition().getRotation().getDegrees() + "vs " + goal.poseMeters.getRotation().getDegrees()  );
-    System.out.println( "target: " + goal.poseMeters.getX() + ", " + goal.poseMeters.getY() );
-    System.out.println( "actual: " +  RobotContainer.driveSubsystem.getPosition().getX() + ", " + RobotContainer.driveSubsystem.getPosition().getY() );
     RobotContainer.driveSubsystem.setMotors( drivePid.calculate( leftSpeed, left ), drivePid.calculate( rightSpeed, -right  ) );
   }
 
@@ -79,7 +77,6 @@ public class DrivePath extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.driveSubsystem.setMotors(0,0);
-    System.out.println( "end!" );
 
   }
 

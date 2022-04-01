@@ -21,6 +21,6 @@ public class ShootTest extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     
 
-    addCommands( new ShootFor( 1.3, 2000, 0.75 ),  new ShootFor( 1.3, 2000, 0.75 ));
+    addCommands( new ShootFor( 2, 2100, 0.5 ));
   }
 }

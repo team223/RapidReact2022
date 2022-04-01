@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,7 +19,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 public class Limelight extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-intake");
   
   NetworkTableEntry tx = table.getEntry("tx");
   NetworkTableEntry ty = table.getEntry("ty");
@@ -30,7 +30,7 @@ public class Limelight extends Subsystem {
   }
 
   public double getDistance(){
-    return 0;
+    return ((8*12) + 6 ) / Math.tan( Math.toDegrees( Constants.LIMELIGHT_ANGLE + getY() ));
   }
 
   public double getY(){
@@ -39,5 +39,11 @@ public class Limelight extends Subsystem {
 
   public double getArea(){
     return ta.getDouble( 0.0 );
+  }
+
+  @Override
+  protected void initDefaultCommand() {
+    // TODO Auto-generated method stub
+    
   }
 }

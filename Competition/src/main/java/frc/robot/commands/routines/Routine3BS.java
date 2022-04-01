@@ -26,10 +26,10 @@ public class Routine3BS extends SequentialCommandGroup {
 
     ParallelRaceGroup group1 = new ParallelRaceGroup( new ParallelCommandGroup( path3B, new SequentialCommandGroup( new WaitFor( 6 ), new RunBody( 0.15 ))
     ), new Intake( -0.8 ) );
-    //ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "3B-2S" ), 
-    //new SequentialCommandGroup( new WaitFor( 2.5 ), new ShootFor( 10, 0.4 ) ),new Intake(-0.8) );
+    ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "3B-2S" ), 
+    new SequentialCommandGroup( new WaitFor( 2.5 ), new ShootFor( 1.3,2000, 0.75 ) ),new Intake(-0.8) );
 
-    //addCommands( new Initialize(  initPose2d ), new ShootFor( 0.7, 0.4 ),
-    //group1, group2);
+    addCommands( new Initialize(  initPose2d ), new ShootFor( 1.3,2000, 0.75 ),
+    group1, group2);
   }
 }

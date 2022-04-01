@@ -139,7 +139,7 @@ public class ClimberSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     
-
+    System.out.println( "left: " + lClimbSensor.get() + ", " + "right: " + rClimbSensor.get()  );
     // This method will be called once per scheduler run
   }
 }

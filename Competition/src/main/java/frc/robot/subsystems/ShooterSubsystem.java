@@ -16,6 +16,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Limelight;
 import frc.robot.PIDFController;
 
 public class ShooterSubsystem extends SubsystemBase {
@@ -51,11 +52,11 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void setRoller( double rollerSpeed ){
-    roller.set( ControlMode.PercentOutput, -rollerSpeed );
+    roller.set( ControlMode.PercentOutput, rollerSpeed );
   }
 
   public double getRollerSpeed(){
-    return roller.getSelectedSensorVelocity();
+    return 0;
   }
 
 
@@ -73,6 +74,5 @@ public class ShooterSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    System.out.println( limelight.getY() );
   }
 }

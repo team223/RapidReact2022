@@ -25,6 +25,8 @@ public final class Constants {
     public static final int SHOOTER_ID_1 = 10;
     public static final int SHOOTER_ID_2 = 11;
 
+    public static final double LIMELIGHT_ANGLE = 73.32;
+
     public static final int ROLLER_ID = 16;
 
     public static enum CargoColor {

@@ -11,14 +11,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.routines.Routine1BLeftF;
 import frc.robot.commands.routines.Routine1BLeftS;
 import frc.robot.commands.routines.Routine1BRightS;
-import frc.robot.commands.routines.Routine2B;
+import frc.robot.commands.routines.Routine1BRightF;
+import frc.robot.commands.routines.Routine2BF;
 import frc.robot.commands.routines.Routine2BMean;
 import frc.robot.commands.routines.Routine3BF;
 import frc.robot.commands.routines.Routine3BS;
-import frc.robot.commands.routines.Routine4BF;
 import frc.robot.commands.routines.Routine4BS;
+import frc.robot.commands.routines.Routine5BF;
+import frc.robot.commands.routines.RoutineLeft4BF;
+import frc.robot.commands.routines.RoutineRight4BF;
 import frc.robot.commands.routines.ShootTest;
 //import frc.robot.commands.routines.RoutineHigh2B;
 
@@ -37,16 +41,17 @@ public class Robot extends TimedRobot {
     private final Command routine1rightslow = new Routine1BRightS();
 
 
-    private final Command routine2 = new Routine2B();
+    //private final Command routine2 = new Routine2B();
     private final Command routine3slow = new Routine3BS();
-    private final Command routine2mean = new Routine2BMean();
-    private final Command routine4slow= new Routine4BS();
+    //private final Command routine2mean = new Routine2BMean();
     //private final Command routine2high = new Routine2BF();
     private final Command routine3fast = new Routine3BF();
-    private final Command routine4fast = new Routine4BF();
+    private final Command routine4Leftfast = new RoutineLeft4BF();
+    private final Command routine4Rightfast = new RoutineRight4BF();
+    private final Command routine4slow= new Routine4BS();
     private final Command shootroutine = new ShootTest();
-    //private final Command routine5high = new Routine5BF();
-
+    private final Command routine5fast = new Routine5BF();
+    private final Command routine2 = new Routine2BF();
     
     static SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -56,15 +61,17 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    //m_chooser.setDefaultOption("Routine 1 Left", routine1leftslow);
-    //m_chooser.addOption("Routine 1 Right", routine1rightslow);
-    //m_chooser.addOption("Routine 2", routine2);
-    //m_chooser.addOption("Routine 3 slow", routine3slow);
+    m_chooser.setDefaultOption("Routine 1 Left", routine1leftslow);
+    m_chooser.addOption("Routine 1 Right", routine1rightslow);
+    m_chooser.addOption("Routine 2", routine2);
+    m_chooser.addOption("Routine 3 slow", routine3slow);
     //m_chooser.addOption("Routine 2 Mean", routine2mean);
-    //m_chooser.addOption("Routine 4 slow", routine4slow);
+    m_chooser.addOption("Routine 4 slow", routine4slow);
     //m_chooser.addOption("Routine 2 High", routine2high);
-    //m_chooser.addOption("Routine 3 fast", routine3fast);
-    //m_chooser.addOption("Routine 4 fast", routine4fast);
+    m_chooser.addOption("Routine 3 fast", routine3fast);
+    m_chooser.addOption("Routine 4 right fast", routine4Rightfast);
+    m_chooser.addOption("Routine 4 left fast", routine4Leftfast);
+    m_chooser.addOption("Routine 5 fast", routine5fast);
     m_chooser.addOption("Shoot Routine", shootroutine);
 
 

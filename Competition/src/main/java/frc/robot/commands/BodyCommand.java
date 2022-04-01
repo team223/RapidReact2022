@@ -110,12 +110,21 @@ public class BodyCommand extends CommandBase {
 
     //SETS SHOOTER
     if( RobotContainer.joystick2.getRawButton( 6 ) ){
-      RobotContainer.shooterSubsystem.setShooterSpeed( 2200 );
-      RobotContainer.shooterSubsystem.setRoller(0.95 ); 
+      RobotContainer.intakeSubsystem.lights.set( true );
+
+      // Low
+      RobotContainer.shooterSubsystem.setShooterSpeed( 3000 );
+      RobotContainer.shooterSubsystem.setRoller(-0.35 ); 
+      
     } else if( RobotContainer.joystick2.getRawButton( 5 )){
-      RobotContainer.shooterSubsystem.setShooterSpeed( 2000 );
-      RobotContainer.shooterSubsystem.setRoller(0.75 ); 
+      RobotContainer.intakeSubsystem.lights.set( true );
+      
+      // High
+      RobotContainer.shooterSubsystem.setShooterSpeed( 2100 );
+      RobotContainer.shooterSubsystem.setRoller(0.5 ); 
+     
     }else{
+      RobotContainer.intakeSubsystem.lights.set( true );
       RobotContainer.shooterSubsystem.resetPID();
       RobotContainer.shooterSubsystem.setShooter(0);
     }
@@ -125,7 +134,7 @@ public class BodyCommand extends CommandBase {
     //SETS FEEDER
     if( RobotContainer.joystick2.getRawButton( 2 ) ){
       shooterCounter++;
-      if( shooterCounter > 30 ){
+      if( shooterCounter > 40 ){
         RobotContainer.indexSubsystem.setFeeder( 0.75 );
       }else if( shooterCounter <= 6 ){
         RobotContainer.indexSubsystem.setFeeder( 0.75 );
@@ -198,6 +207,7 @@ public class BodyCommand extends CommandBase {
     }else{
       colorChecked = false;
     }
+    
 
  }
 

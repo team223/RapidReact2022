@@ -19,17 +19,17 @@ public class Routine3BF extends SequentialCommandGroup {
   public Routine3BF() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    Pose2d initPose2d = new Pose2d(8.875619251849244 , 5.189413573230011, new Rotation2d( 1.2722973952087244 ) );
+    Pose2d initPose2d = new Pose2d(8.875619251849244 , 5.189413573230011, new Rotation2d( 1.2490457723982504 ) );
     DrivePath path3B = new DrivePath( "3B-1F" );
 
 
 
-    ParallelRaceGroup group1 = new ParallelRaceGroup( new ParallelCommandGroup( path3B, new SequentialCommandGroup( new WaitFor( 6 ), new RunBody( 0.15 ))
+    ParallelRaceGroup group1 = new ParallelRaceGroup( new ParallelCommandGroup( path3B, new SequentialCommandGroup( new WaitFor( 3.5 ), new RunBody( 0.15 ))
     ), new Intake( -0.8 ) );
     ParallelRaceGroup group2 = new ParallelRaceGroup( new DrivePath( "3B-2F" ), 
-    new SequentialCommandGroup( new WaitFor( 2.5 ), new ShootFor( 1.3, 2000,0.75 ), new ShootFor(1.3,2000,0.75) ),new Intake(-0.8) );
+    new SequentialCommandGroup( new WaitFor( 0.5 ), new WarmUp( 10,2100,0.57 ) ),new Intake(-0.8) );
 
-    addCommands( new Initialize(  initPose2d ), new ShootFor( 1.3, 2000,0.75 ),
-    group1, group2);
+    addCommands( new Initialize(  initPose2d ), new WarmUp(0.5, 2100, 0.57), new ShootFor( 1.3, 2100,0.57 ),
+    group1, group2, new WarmUp(1, 2100, 0.57), new ShootFor(1.5,2100,0.57));
   }
 }
