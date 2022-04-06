@@ -45,7 +45,9 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void setShooterSpeed( double shooterSpeed ){
+    shooter1.burnFlash(); shooter2.burnFlash();
     double speed = controller.calculate( getSpeed(), shooterSpeed );
+    System.out.println( shooterSpeed );
     shooter1.set(-speed);
     shooter2.set(speed);
     //setRoller( 0.5 );
@@ -56,7 +58,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public double getRollerSpeed(){
-    return 0;
+    return roller.getSelectedSensorVelocity();
   }
 
 
@@ -68,7 +70,7 @@ public class ShooterSubsystem extends SubsystemBase {
    * @return average speed between the two motors
    */
   public double getSpeed(){
-    return ( -shooter1.getEncoder().getVelocity() + shooter2.getEncoder().getVelocity() ) / 2;
+    return ( -shooter1.getEncoder().getVelocity() );
   }
 
 

@@ -25,7 +25,6 @@ public class IntakeSubsystem extends SubsystemBase {
   private static CANSparkMax intake = new CANSparkMax( Constants.INTAKE_ID, MotorType.kBrushless );
 
   private static Solenoid solenoid = new Solenoid( 30, PneumaticsModuleType.CTREPCM, 5 );
-  public static Solenoid lights = new Solenoid( 30, PneumaticsModuleType.CTREPCM, 4 );
 
 
   

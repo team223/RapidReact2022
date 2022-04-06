@@ -71,7 +71,6 @@ public class BodyCommand extends CommandBase {
 
     if( buttonPressed2 && canToggle2 ){
       manual = !manual;
-      RobotContainer.climberSubsystem.ohShit();
       buttonPressed1 = false;
       canToggle1 = false;
     }
@@ -110,21 +109,18 @@ public class BodyCommand extends CommandBase {
 
     //SETS SHOOTER
     if( RobotContainer.joystick2.getRawButton( 6 ) ){
-      RobotContainer.intakeSubsystem.lights.set( true );
 
       // Low
       RobotContainer.shooterSubsystem.setShooterSpeed( 3000 );
       RobotContainer.shooterSubsystem.setRoller(-0.35 ); 
       
     } else if( RobotContainer.joystick2.getRawButton( 5 )){
-      RobotContainer.intakeSubsystem.lights.set( true );
       
       // High
       RobotContainer.shooterSubsystem.setShooterSpeed( 2100 );
-      RobotContainer.shooterSubsystem.setRoller(0.5 ); 
+      RobotContainer.shooterSubsystem.setRoller(0.65 ); 
      
     }else{
-      RobotContainer.intakeSubsystem.lights.set( true );
       RobotContainer.shooterSubsystem.resetPID();
       RobotContainer.shooterSubsystem.setShooter(0);
     }
@@ -197,9 +193,7 @@ public class BodyCommand extends CommandBase {
     if( RobotContainer.indexSubsystem.ballSensor[2].get() ){
       if( !colorChecked ){
         if( RobotContainer.indexSubsystem.colorSensor.get() ){
-          System.out.println( "red" );
         }else{
-          System.out.println( "blue" );
         }
       }
 

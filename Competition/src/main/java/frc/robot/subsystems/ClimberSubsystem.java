@@ -60,11 +60,6 @@ public class ClimberSubsystem extends SubsystemBase {
     
   }
 
-
-
-
-
-
   public void setClimbers( double speed ){
     
     /*
@@ -97,14 +92,6 @@ public class ClimberSubsystem extends SubsystemBase {
       group.schedule();
   }
 
-  public void ohShit(){
-    try{
-      
-    }catch( Exception e ){
-      
-    }
-  }
-
   public void setLeftClimber( double speed ){ 
     
     if(!lClimbSensor.get()){
@@ -114,9 +101,9 @@ public class ClimberSubsystem extends SubsystemBase {
       leftClimber.set(0);
     }else{leftClimber.set( speed );}
 
-    if( -leftClimber.getEncoder().getPosition() >= (actuation.get()? 200 : 230 ) && speed < 0 && !RobotContainer.joystick2.getRawButton( 8 )  ){
+    /*if( -leftClimber.getEncoder().getPosition() >= (actuation.get()? 200 : 230 ) && speed < 0 && !RobotContainer.joystick2.getRawButton( 8 )  ){
      leftClimber.set( 0 );
-    }
+    }*/
 
 
   }
@@ -130,16 +117,15 @@ public class ClimberSubsystem extends SubsystemBase {
     }else{rightClimber.set( speed );}
 
 
-    if(  -rightClimber.getEncoder().getPosition() >= (actuation.get()? 190 : 220 ) && speed < 0 && !RobotContainer.joystick2.getRawButton( 8 )  ){
+    /*if(  -rightClimber.getEncoder().getPosition() >= (actuation.get()? 190 : 220 ) && speed < 0 && !RobotContainer.joystick2.getRawButton( 8 )  ){
      rightClimber.set( 0 );
-    }
+    }*/
 
   }
 
   @Override
   public void periodic() {
     
-    System.out.println( "left: " + lClimbSensor.get() + ", " + "right: " + rClimbSensor.get()  );
     // This method will be called once per scheduler run
   }
 }

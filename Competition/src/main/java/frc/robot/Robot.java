@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.routines.DriveTest;
 import frc.robot.commands.routines.Routine1BLeftF;
 import frc.robot.commands.routines.Routine1BLeftS;
 import frc.robot.commands.routines.Routine1BRightS;
@@ -52,6 +53,8 @@ public class Robot extends TimedRobot {
     private final Command shootroutine = new ShootTest();
     private final Command routine5fast = new Routine5BF();
     private final Command routine2 = new Routine2BF();
+    private final Command driveroutine = new DriveTest();
+
     
     static SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -73,6 +76,7 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("Routine 4 left fast", routine4Leftfast);
     m_chooser.addOption("Routine 5 fast", routine5fast);
     m_chooser.addOption("Shoot Routine", shootroutine);
+    m_chooser.addOption("Drive Routine", driveroutine);
 
 
 

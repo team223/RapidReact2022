@@ -44,7 +44,6 @@ public class DriveSubsystem extends SubsystemBase {
   public DriveSubsystem(){
     reset( new Pose2d( 0, 0, new Rotation2d( 0 ) ) );
     odometry = new DifferentialDriveOdometry( new Rotation2d( 0 ) );
-    System.out.println(odometry);
     for( int i = 0; i < 2; i++ ){
       leftMotors[i].getEncoder().setPosition(0);
       rightMotors[i].getEncoder().setPosition(0);
