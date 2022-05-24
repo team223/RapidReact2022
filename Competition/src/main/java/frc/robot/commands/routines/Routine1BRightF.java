@@ -19,12 +19,11 @@ public class Routine1BRightF extends SequentialCommandGroup {
   public Routine1BRightF() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    Pose2d initPose2d = new Pose2d( 9.759, 4.176, new Rotation2d( 1 ) );
-    DrivePath path1B = new DrivePath( "1B-RightF" );
+    
 
 
-    ParallelRaceGroup group1 = new ParallelRaceGroup( path1B, new Intake( -0.8 ) );
+    SequentialCommandGroup group1 = new SequentialCommandGroup( new AutoDrive(.75, 0.7, -0.7) );
 
-    addCommands( new Initialize(  initPose2d ),new ShootFor( 2000, 1.3, 0.75 ), group1);
+    addCommands(  new WarmUp(0.7, 2100, 0.65), new ShootFor( 1.3, 2100, 0.65 ), group1);
   }
 }

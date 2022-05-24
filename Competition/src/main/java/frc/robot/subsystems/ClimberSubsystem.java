@@ -101,25 +101,27 @@ public class ClimberSubsystem extends SubsystemBase {
       leftClimber.set(0);
     }else{leftClimber.set( speed );}
 
-    /*if( -leftClimber.getEncoder().getPosition() >= (actuation.get()? 200 : 230 ) && speed < 0 && !RobotContainer.joystick2.getRawButton( 8 )  ){
+    if( -leftClimber.getEncoder().getPosition() >= (actuation.get()? 110 : 140 ) && speed < 0 && !RobotContainer.joystick2.getRawButton( 8 )  ){
      leftClimber.set( 0 );
-    }*/
+    }
 
 
   }
 
   public void setRightClimber( double speed ){
     if(!rClimbSensor.get()){
+      
     rightClimber.getEncoder().setPosition(0);
     }
     if(speed > 0 && !rClimbSensor.get()){
       rightClimber.set(0);
     }else{rightClimber.set( speed );}
 
+    System.out.println(  rightClimber.getEncoder().getPosition());
 
-    /*if(  -rightClimber.getEncoder().getPosition() >= (actuation.get()? 190 : 220 ) && speed < 0 && !RobotContainer.joystick2.getRawButton( 8 )  ){
+    if(  -rightClimber.getEncoder().getPosition() >= (actuation.get()? 100 : 130 ) && speed < 0 && !RobotContainer.joystick2.getRawButton( 8 )  ){
      rightClimber.set( 0 );
-    }*/
+    }
 
   }
 

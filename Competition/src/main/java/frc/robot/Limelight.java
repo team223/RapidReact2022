@@ -19,13 +19,13 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 public class Limelight extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-intake");
+  static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-intake");
   
-  NetworkTableEntry tx = table.getEntry("tx");
+  static NetworkTableEntry tx = table.getEntry("tx");
   NetworkTableEntry ty = table.getEntry("ty");
   NetworkTableEntry ta = table.getEntry("ta");
 
-  public double getX(){
+  public static double getX(){
     return tx.getDouble( 0.0 );
   }
 

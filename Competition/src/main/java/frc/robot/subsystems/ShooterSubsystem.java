@@ -54,7 +54,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void setRoller( double rollerSpeed ){
-    roller.set( ControlMode.PercentOutput, rollerSpeed );
+    roller.set( ControlMode.PercentOutput, -rollerSpeed );
   }
 
   public double getRollerSpeed(){

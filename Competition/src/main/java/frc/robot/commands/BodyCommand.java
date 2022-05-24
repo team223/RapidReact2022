@@ -110,13 +110,19 @@ public class BodyCommand extends CommandBase {
     //SETS SHOOTER
     if( RobotContainer.joystick2.getRawButton( 6 ) ){
 
-      // Low
-      RobotContainer.shooterSubsystem.setShooterSpeed( 3000 );
+      // Batter
+      RobotContainer.shooterSubsystem.setShooterSpeed( 2400 );
+      RobotContainer.shooterSubsystem.setRoller(0.8 ); 
+
+      //Low
+      /*
+      RobotContainer.shooterSubsystem.setShooterSpeed( 2500 );
       RobotContainer.shooterSubsystem.setRoller(-0.35 ); 
+      */
       
     } else if( RobotContainer.joystick2.getRawButton( 5 )){
       
-      // High
+      // Far
       RobotContainer.shooterSubsystem.setShooterSpeed( 2100 );
       RobotContainer.shooterSubsystem.setRoller(0.65 ); 
      

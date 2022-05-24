@@ -13,13 +13,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.routines.DriveTest;
 import frc.robot.commands.routines.Routine1BLeftF;
-import frc.robot.commands.routines.Routine1BLeftS;
-import frc.robot.commands.routines.Routine1BRightS;
 import frc.robot.commands.routines.Routine1BRightF;
 import frc.robot.commands.routines.Routine2BF;
 import frc.robot.commands.routines.Routine2BMean;
 import frc.robot.commands.routines.Routine3BF;
-import frc.robot.commands.routines.Routine3BS;
 import frc.robot.commands.routines.Routine4BS;
 import frc.robot.commands.routines.Routine5BF;
 import frc.robot.commands.routines.RoutineLeft4BF;
@@ -38,12 +35,10 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  private final Command routine1leftslow = new Routine1BLeftS();
-    private final Command routine1rightslow = new Routine1BRightS();
 
 
+    private final Command routine1fast = new Routine1BRightF();
     //private final Command routine2 = new Routine2B();
-    private final Command routine3slow = new Routine3BS();
     //private final Command routine2mean = new Routine2BMean();
     //private final Command routine2high = new Routine2BF();
     private final Command routine3fast = new Routine3BF();
@@ -64,10 +59,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("Routine 1 Left", routine1leftslow);
-    m_chooser.addOption("Routine 1 Right", routine1rightslow);
     m_chooser.addOption("Routine 2", routine2);
-    m_chooser.addOption("Routine 3 slow", routine3slow);
     //m_chooser.addOption("Routine 2 Mean", routine2mean);
     m_chooser.addOption("Routine 4 slow", routine4slow);
     //m_chooser.addOption("Routine 2 High", routine2high);
@@ -77,6 +69,8 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("Routine 5 fast", routine5fast);
     m_chooser.addOption("Shoot Routine", shootroutine);
     m_chooser.addOption("Drive Routine", driveroutine);
+    m_chooser.addOption("Routine 1", routine1fast);
+
 
 
 
